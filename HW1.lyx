@@ -1,0 +1,568 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Algorithmic Game Theory - HW1
+\end_layout
+
+\begin_layout Author
+Ido Kessler - 311398499, Jonathan Somer - 307923383
+\end_layout
+
+\begin_layout Part
+Auctions
+\end_layout
+
+\begin_layout Section*
+Problem 1:
+\end_layout
+
+\begin_layout Standard
+Denote 
+\begin_inset Formula $N$
+\end_inset
+
+ to be the set of all bidder, such that 
+\begin_inset Formula $S\subseteq N$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+Conditions:
+\end_layout
+
+\begin_layout Itemize
+The bidder with the maximum private value is in 
+\begin_inset Formula $S$
+\end_inset
+
+.
+ We will denote her as 
+\begin_inset Formula $i_{max}=\underset{i\in S}{argmax}(v_{i})=\underset{i\in N}{argmax}(v_{i})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The second highest private value is also in 
+\begin_inset Formula $S$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $i_{second}=\underset{i\in S\backslash\{i_{max}\}}{argmax}(v_{i})=\underset{i\in N\backslash\{i_{max}\}}{argmax}(v_{i})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Sufficiency:
+\end_layout
+
+\begin_layout Standard
+The item will always be allocated to 
+\begin_inset Formula $i_{max}$
+\end_inset
+
+ , and she will pay the bid of the second highest bidder 
+\begin_inset Formula $i_{second}$
+\end_inset
+
+.
+ As 
+\begin_inset Formula $i_{second}\in S$
+\end_inset
+
+, she can untruthfully lower her bid and improve the collective payoff.
+ Bidder 
+\begin_inset Formula $i_{max}$
+\end_inset
+
+ will pay less then he would have played if 
+\begin_inset Formula $i_{second}$
+\end_inset
+
+ wouldn't have lied.
+\end_layout
+
+\begin_layout Subsection*
+Necessity:
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Assume by contradiction that 
+\begin_inset Formula $i_{max}\notin S$
+\end_inset
+
+: 
+\series default
+Then 
+\begin_inset Formula $i_{max}\in N\backslash S$
+\end_inset
+
+ and as such no bidder in 
+\begin_inset Formula $S$
+\end_inset
+
+ will get the item if bids are truthful.
+ In this case 
+\begin_inset Formula $S$
+\end_inset
+
+ collective payoff is 
+\begin_inset Formula $0$
+\end_inset
+
+.
+ Any untruthful change on the bids in 
+\begin_inset Formula $S$
+\end_inset
+
+ such that the maximum remains in 
+\begin_inset Formula $N\backslash S$
+\end_inset
+
+ will not change the resulting payoff.
+ Assume a bid exceeded 
+\begin_inset Formula $v_{i_{max}}$
+\end_inset
+
+ (
+\begin_inset Formula $b_{i_{max}}$
+\end_inset
+
+), then the second is at least 
+\begin_inset Formula $v_{i_{max}}$
+\end_inset
+
+, which is higher then any private value in 
+\begin_inset Formula $S$
+\end_inset
+
+, resulting in a negative payoff.
+ Thus if 
+\begin_inset Formula $i_{max}\notin S$
+\end_inset
+
+ the collective payoff cannot be increased by untruthful bidding.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+We can now assume that 
+\begin_inset Formula $i_{max}\in S$
+\end_inset
+
+; assume by contradiction that 
+\begin_inset Formula $i_{second}\notin S$
+\end_inset
+
+:
+\series default
+ Any untruthful change in the bid of 
+\begin_inset Formula $i_{max}$
+\end_inset
+
+ will not effect the resulting payoff as long as it's not less then 
+\begin_inset Formula $i_{second}$
+\end_inset
+
+.
+ Bidding less then 
+\begin_inset Formula $i_{second}$
+\end_inset
+
+ will result in 
+\begin_inset Formula $i_{max}$
+\end_inset
+
+ not getting the item and the payoff to be either 
+\begin_inset Formula $0$
+\end_inset
+
+ or negative (in case another bidder in 
+\begin_inset Formula $S$
+\end_inset
+
+ bid a higher value then 
+\begin_inset Formula $i_{second}$
+\end_inset
+
+).
+ Any untruthful change in the bids of 
+\begin_inset Formula $S\backslash\{i_{max}\}$
+\end_inset
+
+ will result in 
+\begin_inset Formula $i_{max}$
+\end_inset
+
+ paying more, or a negative payoff.
+ In this case the payoff cannot be increased.
+ 
+\begin_inset Formula $\square$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Problem 2:
+\end_layout
+
+\begin_layout Subsection*
+1
+\end_layout
+
+\begin_layout Standard
+Let there be some lopsided setting with an optimal allocation 
+\begin_inset Formula $T^{*}$
+\end_inset
+
+ such that it holds that 
+\begin_inset Formula $\underset{i\in A}{\sum v_{i}(T_{i}^{*})}\geq\frac{1}{2}\sum_{i=1}^{n}v_{i}(T_{i}^{*})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\frac{1}{2}\sum_{i=1}^{n}v_{i}(T_{i}^{*}) & \underset{i\in A}{\leq\sum v_{i}(T_{i}^{*})}\\
+\frac{1}{2\sqrt{m}}\sum_{i=1}^{n}v_{i}(T_{i}^{*}) & \leq\frac{1}{\sqrt{m}}\sum_{i\in A}v_{i}(T_{i}^{*})\\
+\frac{1}{2\sqrt{m}}\sum_{i=1}^{n}v_{i}(T_{i}^{*}) & \leq\frac{1}{\sqrt{m}}\sum_{i\in A}v_{i}(T_{i}^{*})\leq max_{i\in A}v_{i}(T_{i}^{*})\\
+\frac{1}{2\sqrt{m}}\sum_{i=1}^{n}v_{i}(T_{i}^{*}) & \leq max_{i\in A}v_{i}(T_{i}^{*})\leq max_{i}v_{i}(T_{i}^{*}\cup M\backslash T_{i}^{*})=max_{i}v_{i}(M)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\square$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+2
+\end_layout
+
+\begin_layout Standard
+Let there be some 
+\series bold
+none
+\series default
+ lopsided setting with an optimal allocation 
+\begin_inset Formula $T^{*}$
+\end_inset
+
+.
+ Then it hold that 
+\begin_inset Formula $\underset{i\in A}{\sum v_{i}(T_{i}^{*})}<\frac{1}{2}\sum_{i=1}^{n}v_{i}(T_{i}^{*})$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+Note that 
+\begin_inset Formula $\underset{i\in A}{\sum v_{i}(T_{i}^{*})}+\underset{i\notin A}{\sum v_{i}(T_{i}^{*})}=\sum_{i=1}^{n}v_{i}(T_{i}^{*})$
+\end_inset
+
+, so:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\underset{i\in A}{\sum v_{i}(T_{i}^{*})}<\frac{1}{2}\sum_{i=1}^{n}v_{i}(T_{i}^{*})\Rightarrow\sum_{i\notin A}v_{i}(T_{i}^{*})>\frac{1}{2}\sum_{i=1}^{n}v_{i}(T_{i}^{*})
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Due to subadditivity:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{1}{\sqrt{m}}\sum_{i\notin A}\sum_{t\in T_{i}^{*}}v_{i}(\{t\})\geq\frac{1}{\sqrt{m}}\sum_{i\notin A}v_{i}(T_{i}^{*})>\frac{1}{2\sqrt{m}}\sum_{i=1}^{n}v_{i}(T_{i}^{*})
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+As 
+\begin_inset Formula $|T_{i}^{*}|<\sqrt{m}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\sum_{i\notin A}max_{t\in T_{i}^{*}}(v_{i}(\{t\}))\geq\frac{1}{\sqrt{m}}\sum_{i\notin A}\sum_{t\in T_{i}^{*}}v_{i}(\{t\})>\frac{1}{2\sqrt{m}}\sum_{i=1}^{n}v_{i}(T_{i}^{*})
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Notice that the left size of the inequality is a description of a allocation
+ of 1 item or less per bidder.
+ 
+\begin_inset Formula $\square$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+3
+\end_layout
+
+\begin_layout Standard
+We will use the results of the last two sections where we arrived at allocation
+ 
+\begin_inset Formula $T$
+\end_inset
+
+ that satisfied 
+\begin_inset Formula $SW_{T}=\Omega(\frac{OPT}{\sqrt{m}})$
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+We also know that 
+\begin_inset Formula $SW_{T}\leq OPT$
+\end_inset
+
+, and as such 
+\begin_inset Formula $OPT\leq\sqrt{m}SW_{T}\leq\sqrt{m}OPT$
+\end_inset
+
+.
+ This means that 
+\begin_inset Formula $\sqrt{m}SW_{T}$
+\end_inset
+
+ is 
+\begin_inset Formula $O(\sqrt{m})$
+\end_inset
+
+-approximate by definition.
+\end_layout
+
+\begin_layout Subsubsection*
+Algorithm:
+\end_layout
+
+\begin_layout Standard
+As we do not know if this is a lopsided setting or not.
+ We will run two 
+\begin_inset Quotes eld
+\end_inset
+
+sub-algorithms
+\begin_inset Quotes erd
+\end_inset
+
+ that will produce a 
+\begin_inset Formula $O(\sqrt{m})$
+\end_inset
+
+-approximate result for each setting.
+ Due to the fact that the closer solution must be the larger we can simply
+ return the maximum of both.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+For lopsided settings:
+\end_layout
+
+\begin_layout Standard
+Evaluate the 
+\begin_inset Formula $SW$
+\end_inset
+
+ resulting from allocationg all goods to a single player for each of the
+ players.
+ Denote the resulting allocation as 
+\begin_inset Formula $T_{lop}$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+For none-lopsided settings:
+\end_layout
+
+\begin_layout Standard
+Due to the fact that in the non-lopsided setting there exists an 
+\begin_inset Formula $O(\sqrt{m})$
+\end_inset
+
+-approximate allocation which allocates at most one item to each bidder
+ we can use a 
+\begin_inset Quotes eld
+\end_inset
+
+bipartite matching
+\begin_inset Quotes erd
+\end_inset
+
+ solution.
+ Create a bipartite graph with the 
+\begin_inset Formula $n$
+\end_inset
+
+ bidders connected to the 
+\begin_inset Formula $m$
+\end_inset
+
+ items with edges weighted 
+\begin_inset Formula $v_{i}(M_{j})$
+\end_inset
+
+ on the edge between the bidder 
+\begin_inset Formula $i$
+\end_inset
+
+ and the item 
+\begin_inset Formula $j$
+\end_inset
+
+.
+ Using max maching algorithm we can compute the maximal match in 
+\begin_inset Formula $O(V^{2}E)$
+\end_inset
+
+, which in our case is 
+\begin_inset Formula $O((m+n)^{2}\cdot mn)$
+\end_inset
+
+, which is poly-time.
+\begin_inset Newline newline
+\end_inset
+
+Running both algorithms is still poly-time, and choosing the maximal allocation
+ guarantees a 
+\begin_inset Formula $O(\sqrt{m})$
+\end_inset
+
+-approximate allocation.
+\end_layout
+
+\begin_layout Subsection*
+4
+\end_layout
+
+\end_body
+\end_document
