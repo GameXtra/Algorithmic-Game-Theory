@@ -549,10 +549,23 @@ bipartite matching
 \end_inset
 
 , which is poly-time.
+ Denote the resulting allocation as 
+\begin_inset Formula $T_{non-lop}$
+\end_inset
+
+
 \begin_inset Newline newline
 \end_inset
 
 Running both algorithms is still poly-time, and choosing the maximal allocation
+ between 
+\begin_inset Formula $T_{lop}$
+\end_inset
+
+ and 
+\begin_inset Formula $T_{non-lop}$
+\end_inset
+
  guarantees a 
 \begin_inset Formula $O(\sqrt{m})$
 \end_inset
@@ -562,6 +575,236 @@ Running both algorithms is still poly-time, and choosing the maximal allocation
 
 \begin_layout Subsection*
 4
+\end_layout
+
+\begin_layout Standard
+We will use the result of section 
+\begin_inset Formula $3$
+\end_inset
+
+ in order to archive a 
+\begin_inset Formula $SW$
+\end_inset
+
+ allocation in poly-time, and archive a truthful combinatorial auction using
+ the VCG (Vickrey–Clarke–Groves) auction mechanism.
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+Prices:
+\end_layout
+
+\begin_layout Standard
+Denote 
+\begin_inset Formula $w^{*}$
+\end_inset
+
+as the allocation that was chosen, 
+\begin_inset Formula $\Omega$
+\end_inset
+
+ as the group of all possible allocation,
+\begin_inset Formula $b$
+\end_inset
+
+ as the vector of the bidder bids for all subgroups, and 
+\begin_inset Formula $b_{i}(w)$
+\end_inset
+
+ as the bid that player 
+\begin_inset Formula $i$
+\end_inset
+
+ was allocated with in the allocation 
+\begin_inset Formula $w$
+\end_inset
+
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Using the VCG mechanism, we know that bidder 
+\begin_inset Formula $i$
+\end_inset
+
+ will pay using the next expression:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+p_{i}(b)=\underset{w\in\Omega}{max}\underset{j\ne i}{\Sigma}b_{j}(w)-\underset{j\ne i}{\Sigma}b_{j}(w^{*})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Caculating the values in polytime:
+\end_layout
+
+\begin_layout Standard
+Computing 
+\begin_inset Formula $\underset{j\ne i}{\Sigma}b_{j}(w^{*})$
+\end_inset
+
+ is poly-time, as it only sun 
+\begin_inset Formula $n$
+\end_inset
+
+ values and as such calculating this is in poly-time - 
+\begin_inset Formula $O(n)$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+Computing 
+\begin_inset Formula $\underset{w\in\Omega}{max}\underset{j\ne i}{\Sigma}b_{j}(w)$
+\end_inset
+
+ depend on the ability to find the maximum 
+\begin_inset Formula $w$
+\end_inset
+
+ in 
+\begin_inset Formula $\Omega$
+\end_inset
+
+.
+ In our case, 
+\begin_inset Formula $\Omega$
+\end_inset
+
+ is the available possible allocations, which contain two diffrent sets
+ of allocation types: lopsided allocations and non-lopsided allocations.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Lopsided alloctions:
+\series default
+ Allocations containing only one bidder who recive all the items.
+ There are only 
+\begin_inset Formula $n$
+\end_inset
+
+ such allocations, and as such the maximum 
+\begin_inset Formula $w$
+\end_inset
+
+ can be found in a 
+\begin_inset Formula $O(n^{2})$
+\end_inset
+
+ time using a naive approch - poly-time.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Non-Lopsided Allocations: 
+\series default
+Allocations that for each bidder allocate no more then 1 item.
+ The number of such allocations is not in poly-space, and as such the 
+\begin_inset Quotes eld
+\end_inset
+
+naive
+\begin_inset Quotes erd
+\end_inset
+
+ computation of the expression in not in poly-time as well.
+ To solve this we can use a 
+\begin_inset Quotes eld
+\end_inset
+
+bipartite matching
+\begin_inset Quotes erd
+\end_inset
+
+ solution to find the maximal match without the current bidder 
+\begin_inset Formula $i$
+\end_inset
+
+.
+ Create a bipartite graph with the 
+\begin_inset Formula $n-1$
+\end_inset
+
+ bidders (Without the current bidder 
+\begin_inset Formula $i$
+\end_inset
+
+) connected to the 
+\begin_inset Formula $m$
+\end_inset
+
+ items with edges weighted 
+\begin_inset Formula $v_{k}(M_{j})$
+\end_inset
+
+ on the edge between the bidder 
+\begin_inset Formula $k$
+\end_inset
+
+ and the item 
+\begin_inset Formula $j$
+\end_inset
+
+.
+ Using max maching algorithm we can compute the maximal match in 
+\begin_inset Formula $O(V^{2}E)$
+\end_inset
+
+, which in our case is 
+\begin_inset Formula $O((m+n)^{2}\cdot mn)$
+\end_inset
+
+, which is poly-time.
+\begin_inset Newline newline
+\end_inset
+
+After computing the maximum value for both the lopsided case and the non-lopside
+d case, we can take the maximal value.
+\end_layout
+
+\begin_layout Subsubsection*
+Complexity:
+\end_layout
+
+\begin_layout Standard
+In order to compute the prices for all the bidders we need to run the algorithm
+ 
+\begin_inset Formula $n$
+\end_inset
+
+ times: 
+\begin_inset Formula $O(n*(n+n^{2}+(m+n)^{2}\cdot mn))$
+\end_inset
+
+ which is in poly-time.
+\end_layout
+
+\begin_layout Subsubsection*
+Correctness:
+\end_layout
+
+\begin_layout Standard
+The VCG mechanism assure us that truthful strategy is a dominent strategy
+ for this auction.
+ While the bids for all the subset of the items that are bigget then 2 and
+ are less then m, are not used in the allocation and prices, it still holds
+ that the truthful strategy is dominant.
+ This holds because while the bidder can lie in all the bids that are not
+ used - it will hold no effect on the result, so the truthful strategy is
+ one of many dominant strategies in this auction.
 \end_layout
 
 \end_body
