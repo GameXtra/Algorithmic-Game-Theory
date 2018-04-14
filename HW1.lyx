@@ -807,5 +807,314 @@ The VCG mechanism assure us that truthful strategy is a dominent strategy
  one of many dominant strategies in this auction.
 \end_layout
 
+\begin_layout Part
+VCG
+\end_layout
+
+\begin_layout Section*
+Problem 4:
+\end_layout
+
+\begin_layout Subsection*
+1
+\end_layout
+
+\begin_layout Standard
+We shall show a case where this is true.
+\end_layout
+
+\begin_layout Subsubsection*
+The initial state:
+\end_layout
+
+\begin_layout Itemize
+Two items: 
+\begin_inset Formula $\{i_{1},i_{2}\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Two players: 
+\begin_inset Formula $\{1,2\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Valuations:
+\begin_inset Formula 
+\[
+v_{1}(\text{set})=\begin{cases}
+2 & \text{set}=\{i_{1},i_{2}\}\\
+0 & \text{else}
+\end{cases}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+v_{2}(\text{set})=\begin{cases}
+1 & \text{set}=\{i_{1},i_{2}\}\\
+0 & \text{else}
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In this case the 
+\begin_inset Formula $VCG$
+\end_inset
+
+ allocates both items to player 1.
+ And her payment is given by:
+\begin_inset Formula 
+\[
+p_{1}=\underset{\omega\in\Omega}{\text{max}}\sum_{j\neq i}b_{i}(\omega)-(\sum_{j\neq i}b_{i}(\omega^{*}))=1-0=1
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+u_{1}=v_{1}(\text{set})-p_{1}=2-1=1
+\]
+
+\end_inset
+
+ We now show how player 1 can bid non-truthfully and increase her utility:
+\end_layout
+
+\begin_layout Subsubsection*
+The initial state:
+\end_layout
+
+\begin_layout Itemize
+Two items: 
+\begin_inset Formula $\{i_{1},i_{2}\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Three players: 
+\begin_inset Formula $\{1_{a},1_{b},2\}$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+Valuations:
+\begin_inset Formula 
+\[
+v_{1_{a}}(\text{set})=\begin{cases}
+1 & \text{set}=\{i_{1}\}\\
+0 & \text{else}
+\end{cases}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+v_{1_{b}}(\text{set})=\begin{cases}
+1 & \text{set}=\{i_{2}\}\\
+0 & \text{else}
+\end{cases}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+v_{1}(\text{set})=\begin{cases}
+1 & \text{set}=\{i_{1},i_{2}\}\\
+0 & \text{else}
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In this case 
+\begin_inset Formula $VCG$
+\end_inset
+
+ allocates 
+\begin_inset Formula $i_{1}$
+\end_inset
+
+ to 
+\begin_inset Formula $1_{a}$
+\end_inset
+
+ and 
+\begin_inset Formula $i_{2}$
+\end_inset
+
+ to 
+\begin_inset Formula $1_{b}$
+\end_inset
+
+ acheiving a maximal welfare of 2.
+ The payment of players 
+\begin_inset Formula $1_{a},1_{b}:$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+p_{1_{a}}=\underset{\omega\in\Omega}{\text{max}}\sum_{j\neq i}b_{i}(\omega)-(\sum_{j\neq i}b_{i}(\omega^{*}))=1-1=0
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+u_{1_{a}}=v_{1_{a}}(\text{set})-p_{1_{a}}=1-0=1
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+p_{1_{b}}=\underset{\omega\in\Omega}{\text{max}}\sum_{j\neq i}b_{i}(\omega)-(\sum_{j\neq i}b_{i}(\omega^{*}))=1-1=0
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+u_{1_{b}}=v_{1_{b}}(\text{set})-p_{1_{b}}=1-0=1
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+And in total: 
+\begin_inset Formula 
+\[
+u_{1_{a}}+u_{1_{b}}=1+1=2
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+By bidding untruthfully we have improved the utility of player 1 by 
+\begin_inset Formula $1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+2
+\end_layout
+
+\begin_layout Standard
+We shall disprove the claim.
+ We assume the other bidders bid truthfully.
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+CASE 1: con-bidder's value is less than the top bid made by another player
+\end_layout
+
+\begin_layout Standard
+Utility will be 0 for con-bidder as the item is not allocated to him.
+ Any non-truthful bid which does not change the top bid will have no effect
+ on the resulting allocation.
+ In addition any non-truthful which does change the top bid will result
+ in con-bidder paying more than he values and this will result in a negative
+ utility.
+ Thus, in the case where the con-bidder's value is less than the top bid
+ made by another player there is no way for her to improve her outcome via
+ non-truthful bidding.
+\end_layout
+
+\begin_layout Subsubsection*
+CASE 2: con-bidder's value is more than the top bid made by another player:
+ 
+\end_layout
+
+\begin_layout Standard
+In a second price auction, the two bids which affect the resulting allocation
+ and pricing (the 
+\begin_inset Quotes eld
+\end_inset
+
+result
+\begin_inset Quotes erd
+\end_inset
+
+) are the first and second bids.
+ We shall use this fact in order to define our cases.
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+case 2a: Highest bid is not made by the con-bidder
+\end_layout
+
+\begin_layout Standard
+In this case the item will not be allocated to our player.
+ By bidding truthfully our player would have acheived a positive utility,
+ so this case does not improve the outcome for our player.
+\end_layout
+
+\begin_layout Subsubsection*
+case 2b: Highest bid is made by the con-bidder
+\end_layout
+
+\begin_layout Standard
+It does not matter what the exact value of the first bid is because its
+ only effect is allocating the item to our player.
+ Any non-truthful bid lower then the highest bid made by another player
+ will not affect the pricing.
+ Any non-truthful bid higher than the second highest bid will result in
+ our player paying more but does not change the allocation and is a worse
+ outcome overall.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\square$
+\end_inset
+
+
+\end_layout
+
 \end_body
 \end_document
