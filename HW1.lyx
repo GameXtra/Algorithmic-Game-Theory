@@ -824,7 +824,7 @@ We shall show a case where this is true.
 \end_layout
 
 \begin_layout Subsubsection*
-The initial state:
+The initial state (truthful state):
 \end_layout
 
 \begin_layout Itemize
@@ -844,10 +844,10 @@ Two players:
 \end_layout
 
 \begin_layout Itemize
-Valuations:
+Valuations & bids:
 \begin_inset Formula 
 \[
-v_{1}(\text{set})=\begin{cases}
+b_{1}(\text{set})=v_{1}(\text{set})=\begin{cases}
 2 & \text{set}=\{i_{1},i_{2}\}\\
 0 & \text{else}
 \end{cases}
@@ -858,7 +858,7 @@ v_{1}(\text{set})=\begin{cases}
 
 \begin_inset Formula 
 \[
-v_{2}(\text{set})=\begin{cases}
+b_{2}(\text{set})=v_{2}(\text{set})=\begin{cases}
 1 & \text{set}=\{i_{1},i_{2}\}\\
 0 & \text{else}
 \end{cases}
@@ -895,7 +895,7 @@ u_{1}=v_{1}(\text{set})-p_{1}=2-1=1
 \end_layout
 
 \begin_layout Subsubsection*
-The initial state:
+Player 1 bids untruthfully:
 \end_layout
 
 \begin_layout Itemize
@@ -915,10 +915,10 @@ Three players:
 \end_layout
 
 \begin_layout Itemize
-Valuations:
+Bids:
 \begin_inset Formula 
 \[
-v_{1_{a}}(\text{set})=\begin{cases}
+b_{1_{a}}(\text{set})=\begin{cases}
 1 & \text{set}=\{i_{1}\}\\
 0 & \text{else}
 \end{cases}
@@ -929,7 +929,7 @@ v_{1_{a}}(\text{set})=\begin{cases}
 
 \begin_inset Formula 
 \[
-v_{1_{b}}(\text{set})=\begin{cases}
+b_{1_{b}}(\text{set})=\begin{cases}
 1 & \text{set}=\{i_{2}\}\\
 0 & \text{else}
 \end{cases}
@@ -940,7 +940,7 @@ v_{1_{b}}(\text{set})=\begin{cases}
 
 \begin_inset Formula 
 \[
-v_{1}(\text{set})=\begin{cases}
+b_{2}(\text{set})=v_{2}(\text{set})=\begin{cases}
 1 & \text{set}=\{i_{1},i_{2}\}\\
 0 & \text{else}
 \end{cases}
@@ -989,14 +989,6 @@ p_{1_{a}}=\underset{\omega\in\Omega}{\text{max}}\sum_{j\neq i}b_{i}(\omega)-(\su
 \end_inset
 
 
-\begin_inset Formula 
-\[
-u_{1_{a}}=v_{1_{a}}(\text{set})-p_{1_{a}}=1-0=1
-\]
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -1008,21 +1000,13 @@ p_{1_{b}}=\underset{\omega\in\Omega}{\text{max}}\sum_{j\neq i}b_{i}(\omega)-(\su
 \end_inset
 
 
-\begin_inset Formula 
-\[
-u_{1_{b}}=v_{1_{b}}(\text{set})-p_{1_{b}}=1-0=1
-\]
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
 And in total: 
 \begin_inset Formula 
 \[
-u_{1_{a}}+u_{1_{b}}=1+1=2
+u_{1}=v_{1}(\{i_{1},i_{2}\})-(p_{1_{a}}+p_{1_{b}})=2-0=2
 \]
 
 \end_inset
