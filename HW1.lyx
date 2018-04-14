@@ -1285,5 +1285,133 @@ It does not matter what the exact value of the first bid is because its
 
 \end_layout
 
+\begin_layout Part
+Online bipartite matching
+\end_layout
+
+\begin_layout Subsection*
+1
+\end_layout
+
+\begin_layout Subsubsection*
+(i) 
+\begin_inset Formula $u_{i}^{\pi,\mathbf{p}}\geq1-p$
+\end_inset
+
+ for any 
+\begin_inset Formula $p_{j}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If 
+\begin_inset Formula $p_{j}\geq p$
+\end_inset
+
+ then item 
+\begin_inset Formula $j$
+\end_inset
+
+ will not have an effect on the items available to player 
+\begin_inset Formula $i$
+\end_inset
+
+ and player 
+\begin_inset Formula $i$
+\end_inset
+
+ will have a utility of 
+\begin_inset Formula $1-p$
+\end_inset
+
+.
+ If 
+\begin_inset Formula $p_{j}\leq p$
+\end_inset
+
+, item j' (the one player 
+\begin_inset Formula $i$
+\end_inset
+
+ took under 
+\begin_inset Formula $\mathbf{\mathbf{p}_{-j}}$
+\end_inset
+
+) will still be available to player 
+\begin_inset Formula $i$
+\end_inset
+
+ so 
+\begin_inset Formula $u_{i}^{\pi,\mathbf{p}}\geq1-p$
+\end_inset
+
+.
+ (it is an easy induction to show that any player before 
+\begin_inset Formula $i$
+\end_inset
+
+ might improve her utility but none will worsen it by taking 
+\begin_inset Formula $j'$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Subsubsection*
+(ii) 
+\end_layout
+
+\begin_layout Standard
+Assume by contradiction that item 
+\begin_inset Formula $j$
+\end_inset
+
+ is not matched.
+ Then in player 
+\begin_inset Formula $i$
+\end_inset
+
+'s turn 
+\begin_inset Formula $j$
+\end_inset
+
+ was not matched.
+ The set of of matched items at this point must be the same as under 
+\begin_inset Formula $\mathbf{p_{-j}}$
+\end_inset
+
+ or else at some point some player made a sub-optimal decision.
+ In player 
+\begin_inset Formula $i's$
+\end_inset
+
+ turn she chooses item with 
+\begin_inset Formula $p<p_{j}$
+\end_inset
+
+ in contradiction to the way a player chooses an item.
+\end_layout
+
+\begin_layout Subsection*
+2 
+\end_layout
+
+\begin_layout Standard
+Calculating 
+\begin_inset Formula $\mathbb{E}_{\omega}[u_{i}]$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\mathbb{E}_{\omega}[u_{i}]=$
+\end_inset
+
+
+\end_layout
+
 \end_body
 \end_document
