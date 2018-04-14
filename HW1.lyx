@@ -808,6 +808,191 @@ The VCG mechanism assure us that truthful strategy is a dominent strategy
 \end_layout
 
 \begin_layout Part
+Sponsored Search
+\end_layout
+
+\begin_layout Section*
+Problem 3:
+\end_layout
+
+\begin_layout Subsection*
+Allocation rule:
+\end_layout
+
+\begin_layout Standard
+Define 
+\begin_inset Formula $b'_{i}=v_{i}\beta_{i}=b_{i}\beta_{i}$
+\end_inset
+
+.
+ Our new allocation assigns the 
+\begin_inset Formula $i$
+\end_inset
+
+th highest 
+\begin_inset Formula $\mathbf{b}'$
+\end_inset
+
+ bidder to the 
+\begin_inset Formula $i$
+\end_inset
+
+th best slot.
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+Claim: the new allocation rule is monotone
+\end_layout
+
+\begin_layout Standard
+Recall the definition for a 
+\series bold
+monotone allocation rule:
+\end_layout
+
+\begin_layout Quote
+An allocation rule 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+ for a single-paramater environment is monotone if for every agent 
+\begin_inset Formula $i$
+\end_inset
+
+ and bids 
+\begin_inset Formula $\mathbf{b_{-i}}$
+\end_inset
+
+, the allocation 
+\begin_inset Formula $\mathbf{x_{i}}(z,\mathbf{b_{-i}})$
+\end_inset
+
+ is non-decreasing in her bid 
+\begin_inset Formula $z$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+It is clear that 
+\begin_inset Formula $\mathbf{x_{i}}(z,\mathbf{b'_{-i}})$
+\end_inset
+
+ is non-decreasing in 
+\begin_inset Formula $z$
+\end_inset
+
+, because increasing 
+\begin_inset Formula $z$
+\end_inset
+
+ will result in a higher place amongst the 
+\begin_inset Formula $b'$
+\end_inset
+
+ bids (assuming 
+\begin_inset Formula $\forall i:\beta_{i}\geq0$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Subsection*
+DSIC Pricing:
+\end_layout
+
+\begin_layout Standard
+Recall Myerson's payment formula: 
+\begin_inset Formula 
+\[
+p_{i}(\mathbf{b})=\sum_{j=1}^{k}b_{j+1}(\alpha_{j}-\alpha_{j+1})
+\]
+
+\end_inset
+
+ We define a new payment formula:
+\begin_inset Formula 
+\[
+p_{i}(\mathbf{b'})=\sum_{j=1}^{k}b'_{j+1}(\alpha_{j}-\alpha_{j+1})=\sum_{j=1}^{k}b{}_{j+1}\beta_{j+1}(\alpha_{j}-\alpha_{j+1})
+\]
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+Claim: the new payment formula is DSIC
+\end_layout
+
+\begin_layout Standard
+Assume that in some other setting, the players' valuations correspond to
+ 
+\begin_inset Formula $\mathbf{b'}$
+\end_inset
+
+.
+ That is, player 
+\begin_inset Formula $i'$
+\end_inset
+
+ has a valuation and bid of 
+\begin_inset Formula $v'_{i}=b'_{i}=b_{i}\beta_{i}$
+\end_inset
+
+.
+ By Myerson's lemma our payment formula is DSIC, as the allocation rule
+ is the same one used in the original proof and the payment is too.
+\begin_inset Newline newline
+\end_inset
+
+Assume by contradiction that some player 
+\begin_inset Formula $i$
+\end_inset
+
+ in the original setting can benefit from non-truthful bidding under the
+ new payment scheme.
+ Let 
+\begin_inset Formula $b_{i\text{-fake}}\neq b_{i}$
+\end_inset
+
+ be the new and more benefitial bid for player 
+\begin_inset Formula $i$
+\end_inset
+
+.
+ Since 
+\begin_inset Formula $b'_{i}=b_{i}\beta_{i}\ne b_{i\text{-fake}}\beta_{i}$
+\end_inset
+
+ it follows that player 
+\begin_inset Formula $i'$
+\end_inset
+
+ could benefit by bidding 
+\begin_inset Formula $b_{i\text{-fake}}\beta_{i}$
+\end_inset
+
+ instead of 
+\begin_inset Formula $b'_{i}$
+\end_inset
+
+.
+ In contradiction to Myerson's lemma.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\square$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part
 VCG
 \end_layout
 
