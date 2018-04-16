@@ -1403,11 +1403,90 @@ Calculating
 \begin_inset Formula $\mathbb{E}_{\omega}[u_{i}]$
 \end_inset
 
-:
+, using (i):
+\begin_inset Formula 
+\[
+\mathbb{E}_{\omega}[u_{i}]=[\text{fix some random order on \ensuremath{L} \ensuremath{\pi} and some \ensuremath{\mathbf{p}_{-j}}}]=\mathbb{E}_{\omega}[u_{i}^{\pi,\mathbf{p}}]\geq1-p
+\]
+
+\end_inset
+
+ Where 
+\begin_inset Formula $p$
+\end_inset
+
+ is the price of the item agent 
+\begin_inset Formula $i$
+\end_inset
+
+ would take in 
+\begin_inset Formula $R\backslash\{j\}$
+\end_inset
+
+ under 
+\begin_inset Formula $\mathbf{p}_{-j}$
+\end_inset
+
+ (as in (i) we set 
+\begin_inset Formula $p=1$
+\end_inset
+
+ if there is no such).
+ The last inequality is simply due to 
+\begin_inset Formula $u_{i}^{\pi,\mathbf{p}}\geq1-p$
+\end_inset
+
+, so the expectation must be larger than 
+\begin_inset Formula $1-p$
+\end_inset
+
+ too.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Calculating 
+\begin_inset Formula $\mathbb{E}_{\omega}[r_{j}]$
+\end_inset
+
+ using (ii):
+\begin_inset Formula 
+\[
+\mathbb{E}_{\omega}[r_{j}]=\mathbb{E}_{\omega}[\mathbf{1}^{\text{item j was taken by player i}}\cdot p_{j}]\underset{\text{from (ii)}}{=}\mathbb{E}_{\omega}[\mathbf{1}^{p_{j}<p}\cdot p_{j}]=
+\]
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $\mathbb{E}_{\omega}[u_{i}]=$
+This is an expectation of a continuous random variable, denote 
+\begin_inset Formula $p=e^{\omega-1}$
+\end_inset
+
+ : 
+\begin_inset Formula 
+\[
+\int_{0}^{\omega}e^{\omega_{j}-1}d\omega_{j}=e^{\omega-1}-e^{-1}=p-\frac{1}{e}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Finally, using the linearity of expecation:
+\begin_inset Formula 
+\[
+\mathbb{E}_{\omega}[u_{i}+r_{j}]=\mathbb{E}_{\omega}[u_{i}]+\mathbb{E}_{\omega}[r_{j}]\geq(1-p)+(p-\frac{1}{e})=1-\frac{1}{e}
+\]
+
+\end_inset
+
+ 
+\begin_inset Formula $\square$
 \end_inset
 
 
