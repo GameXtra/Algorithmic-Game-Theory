@@ -1461,7 +1461,30 @@ Calculating
 \end_layout
 
 \begin_layout Standard
-This is an expectation of a continuous random variable, denote 
+Notice that we can view this as the expectation of a continuous uniform
+ random variable, between 0 to 1, and compute 
+\begin_inset Formula $\mathbb{E}_{\omega}[r_{j}]$
+\end_inset
+
+ as the integral over all value from 0 to 1.
+ Also notice that because we are working with a uniform distribution over
+ 
+\begin_inset Formula $[0,1]$
+\end_inset
+
+ the density is 
+\begin_inset Formula $\frac{1}{b-a}$
+\end_inset
+
+ which in our case is 
+\begin_inset Formula $1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+We will denote 
 \begin_inset Formula $p=e^{\omega-1}$
 \end_inset
 
@@ -1472,7 +1495,7 @@ This is an expectation of a continuous random variable, denote
 : 
 \begin_inset Formula 
 \[
-=\int_{0}^{\omega}e^{\omega_{j}-1}d\omega_{j}=e^{\omega-1}-e^{-1}=p-\frac{1}{e}
+\int_{0}^{1}1\cdot(\mathbf{\mathbf{1}^{p_{j}<p}}\cdot e^{\omega_{j}-1})d\omega_{j}=\int_{w}^{1}0\cdot e^{\omega_{j}-1}d\omega_{j}+\int_{0}^{\omega}1\cdot e^{\omega_{j}-1}d\omega_{j}=e^{\omega-1}-e^{-1}=p-\frac{1}{e}
 \]
 
 \end_inset
