@@ -75,7 +75,7 @@ algorithm2e
 \begin_body
 
 \begin_layout Title
-Modeling Autonomous Car Allocation as a Dynamic Market Pricing Problem
+Modelling Autonomous Car Allocation as a Dynamic Market Pricing Problem
 \end_layout
 
 \begin_layout Author
@@ -95,21 +95,135 @@ Itay Itzhak <Itayitzhak@mail.tau.ac.il>
 \end_layout
 
 \begin_layout Section*
-Proposition
+Research Proposal:
 \end_layout
 
-\begin_layout Subsubsection*
-asdf
+\begin_layout Subsection*
+Introduction:
+\end_layout
+
+\begin_layout Standard
+The recent advances in the field of autonomous transportation have created
+ demand for solving many practical problems in order to efficiently integrate
+ this new technology in our lives.
+ The US secretary of transporation has estimated that by 2025 autonomous
+ vehicles will be in use worldwide.
+ It could be the case that major companies like Google, Uber & Tesla will
+ hold large scale fleets of vehicles and make them available as a service.
+ Another option is that people will make their own private vehicles, while
+ not in use, available for use by other drivers.
+ In any case the problem of allocating autonomous vehicles to passengers
+ will be of great concern in the near future.
+\end_layout
+
+\begin_layout Subsection*
+Our Goal:
+\end_layout
+
+\begin_layout Standard
+Our first goal will be to model the problem of autonomous vehicle allocation
+ as a special case of known problems in the field of algorithmic game theory.
+ Thus using the major results in the field of algorithmic game theory in
+ order to advance the field of autonomous vehicles.
+ We will then examine different sets of assumptions, constraints and optimizatio
+ns regarding this allocation problem and attempt to find optimal solutions
+ for some special cases.
+\end_layout
+
+\begin_layout Subsection*
+Measuring Performance of Our Algorithm:
+\end_layout
+
+\begin_layout Standard
+In the recent google hashcode competition more than 60,000 paricipants attempted
+ to solve this problem.
+ We will measure our algorithm against the top results in this competition.
 \end_layout
 
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-1"
+key "key-1-1"
 
 \end_inset
 
-asdfdsafasf
+
+\series bold
+The FedEx Problem
+\series default
+ - https://homes.cs.washington.edu/~kgoldner/papers/fedex.pdf 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-5"
+
+\end_inset
+
+
+\series bold
+The Invisible Hand of Dynamic Market Pricing - 
+\series default
+https://arxiv.org/pdf/1511.05646.pdf
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-6"
+
+\end_inset
+
+
+\series bold
+Makespan Minimization via Posted Prices
+\series default
+ - https://arxiv.org/abs/1705.01965
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-2"
+
+\end_inset
+
+
+\series bold
+Efficient Empirical Revenue Maximization in Single-Parameter Auction Environment
+s
+\series default
+ - https://arxiv.org/abs/1610.09976
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-3"
+
+\end_inset
+
+
+\series bold
+Optimal Analysis of an Online Algorithm for the Bipartite Matching Problem
+ on a Line
+\series default
+ - https://arxiv.org/abs/1803.07206
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-4"
+
+\end_inset
+
+
+\series bold
+Online Stochastic Matching: Online Actions Based on Offline Statistics 
+\series default
+- https://arxiv.org/abs/1007.1673
 \end_layout
 
 \end_body
