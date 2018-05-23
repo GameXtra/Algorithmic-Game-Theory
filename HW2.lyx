@@ -771,6 +771,8 @@ First it is clear that a run of the
 \end_inset
 
 ).
+ Note we are assuming black-box valuations, that is: we can query a buyer's
+ valuation in constant time.
  In total this is polynomial.
 \begin_inset Newline newline
 \end_inset
@@ -956,6 +958,433 @@ Problem 2:
 \end_layout
 
 \begin_layout Standard
+Our setting: 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $n$
+\end_inset
+
+ agents with corresponding 
+\begin_inset Formula $v_{i}:2^{m}\rightarrow\mathbb{R}_{\geq0}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $m$
+\end_inset
+
+ items
+\end_layout
+
+\begin_layout Itemize
+value 
+\begin_inset Formula $r\in\mathbb{R}_{\geq0}$
+\end_inset
+
+, s.t: 
+\begin_inset Formula $r:=max\sum_{i}v_{i}(S_{i})$
+\end_inset
+
+ , over all allocations
+\end_layout
+
+\begin_layout Standard
+We will describe an algorithm that maximizes welfare and runs in 
+\begin_inset Formula $poly(m,n)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Our Linear-Program setting for maximizing welfare (reminder):
+\end_layout
+
+\begin_layout Standard
+The primal 
+\begin_inset Formula $(P)$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{align*}
+\text{maximize} & \sum_{i=1}^{n}\sum_{S\subseteq U}v_{i}(S)x_{iS}\\
+\text{subject to:} & \ \ \forall j:\sum_{i=1}^{n}\sum_{S\subseteq U:j\in S}x_{iS}\leq1\\
+ & \forall i:\ \sum_{S\subseteq U}x_{iS}\leq1
+\end{align*}
+
+\end_inset
+
+ Its Dual 
+\begin_inset Formula $(D)$
+\end_inset
+
+: 
+\begin_inset Formula 
+\begin{align*}
+\text{minimize} & \sum_{i=1}^{n}u_{i}+\sum_{i=1}^{m}p_{j}\\
+\text{subject to:} & \ \ \forall i\ \forall S\subseteq U:\ u_{i}+\sum_{j\in S}p_{j}\geq v_{i}(S)\\
+ & \forall i:\ u_{i}\geq0\\
+ & \forall j:\ p_{j}\geq0
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+The Ellipsoid Algorithm:
+\end_layout
+
+\begin_layout Quotation
+\begin_inset Quotes eld
+\end_inset
+
+Every linear program that admits a polynomial time [w.r.t number of variables,
+ not constraints] separation oracle can be solved in polynomial time.
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Where a separation oracle must:
+\end_layout
+
+\begin_layout Itemize
+Receive as input some solution.
+\end_layout
+
+\begin_layout Itemize
+Return [Feasible] or [Not Feasible + An example of some constraint violated].
+\end_layout
+
+\begin_layout Subsubsection*
+A poly-time separation oracle for 
+\begin_inset Formula $(D)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+On input 
+\begin_inset Formula $({\bf p},{\bf u})$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Itemize
+Check all nonnegativity constraints, if one is violated return it.
+ 
+\begin_inset Formula $O(m+n)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+We now move on to validate the exponential number of constraints of the
+ form:
+\begin_inset Formula 
+\[
+u_{i}+\sum_{j\in S}p_{j}\geq v_{i}(S)
+\]
+
+\end_inset
+
+ Rearrange into: 
+\begin_inset Formula 
+\[
+u_{i}\geq v_{i}(S)-\sum_{j\in S}p_{j}
+\]
+
+\end_inset
+
+Notice that on the right side we have the utility for bundle 
+\begin_inset Formula $S$
+\end_inset
+
+.
+ We have previously proved that we can compute a demand query for GS valuations
+ in polynomial time and obtain some 
+\begin_inset Formula $S^{*}$
+\end_inset
+
+ that maximizes utility.
+ For each bidder we will run such a demand query and obtain the corresponding
+ 
+\begin_inset Formula $S^{*}$
+\end_inset
+
+.
+ As on the left we always have 
+\begin_inset Formula $u_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $S^{*}$
+\end_inset
+
+ maximizes the right side, if some constraint is violated then the constraint
+ involving 
+\begin_inset Formula $S^{*}$
+\end_inset
+
+ must be violated too.
+ And conversely, if this constraing is satisfied then all others must be
+ satisfied too.
+ Thus it is enough to check this one constraint and return [Feasible] if
+ it is satisfied, or [Not Feasible + 
+\begin_inset Formula $u_{i}\geq v_{i}(S^{*})-\sum_{j\in S^{*}p_{j}}$
+\end_inset
+
+] in case it is not.
+ 
+\begin_inset Newline newline
+\end_inset
+
+In total: 
+\begin_inset Formula $O(n\cdot poly(m))=poly(m,n)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Thus there exists a polynomial separator for 
+\begin_inset Formula $(D)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Proof: 
+\end_layout
+
+\begin_layout Standard
+Using strong duality we know that 
+\begin_inset Formula $r$
+\end_inset
+
+ is also the optimal solution for 
+\begin_inset Formula $(D)$
+\end_inset
+
+.
+ And from the theorem seen in class we know that if there exists WE (and
+ for the special case of GS valuations we know that it does) then this solution
+ is also the solution for the integer programming problem.
+ We now perform the following procedure 
+\begin_inset Formula $m$
+\end_inset
+
+ items, once per item 
+\begin_inset Formula $j$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+For each bidder 
+\begin_inset Formula $b_{i}$
+\end_inset
+
+: Assign item 
+\begin_inset Formula $j$
+\end_inset
+
+ to bidder 
+\begin_inset Formula $b_{i}$
+\end_inset
+
+.
+ Compute the solution to the linear program resulting from this allocation
+ (details below **) if the solution received is 
+\begin_inset Formula $r$
+\end_inset
+
+ we know that item 
+\begin_inset Formula $j$
+\end_inset
+
+ can be assigned to bidder 
+\begin_inset Formula $j$
+\end_inset
+
+.
+ We assign as such and continue to the next item.
+ 
+\begin_inset Newline newline
+\end_inset
+
+**Which LP is received after allocating 
+\begin_inset Formula $j$
+\end_inset
+
+ to bidder 
+\begin_inset Formula $b_{i}$
+\end_inset
+
+?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\text{maximize} & \sum_{i=1}^{n}\sum_{S\subseteq U\backslash\{j\}}v_{i}(S)x_{iS}\\
+\text{subject to:} & \ \ \forall k:\sum_{i=1}^{n}\sum_{S\subseteq U\backslash\{j\}:k\in S}x_{iS}\leq1\\
+ & \forall i:\ \sum_{S\subseteq U\backslash\{j\}}x_{iS}\leq1
+\end{align*}
+
+\end_inset
+
+ And we define 
+\begin_inset Formula $v_{i}$
+\end_inset
+
+ to be 
+\begin_inset Formula $v_{i}(\cdot|\{j\})$
+\end_inset
+
+ which is GS over 
+\begin_inset Formula $U\backslash\{j\}$
+\end_inset
+
+, proof:
+\begin_inset Newline newline
+\end_inset
+
+Let there be some price vector 
+\begin_inset Formula ${\bf p}_{-j}$
+\end_inset
+
+ and some set 
+\begin_inset Formula $S\in D_{i}({\bf p}_{-j})$
+\end_inset
+
+ and some 
+\begin_inset Formula ${\bf q}_{-j}\ge{\bf p}_{-j}$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $A$
+\end_inset
+
+ be the set of items whose price increased.
+ We must show that there exists some 
+\begin_inset Formula $T\subseteq U\backslash\{j\}$
+\end_inset
+
+ s.t 
+\begin_inset Formula $(S\backslash A)\cup T\in D_{i}({\bf q}_{-j})$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+We add a price of 
+\begin_inset Formula $\infty$
+\end_inset
+
+ to item 
+\begin_inset Formula $j$
+\end_inset
+
+ in both vectors resulting in 
+\begin_inset Formula ${\bf p}$
+\end_inset
+
+ and 
+\begin_inset Formula ${\bf q}$
+\end_inset
+
+.
+ Then we know that for 
+\begin_inset Formula $v_{i}(\cdot)$
+\end_inset
+
+ item 
+\begin_inset Formula $j\notin D({\bf p}),D({\bf q})$
+\end_inset
+
+.
+ And by GS of 
+\begin_inset Formula $v_{i}$
+\end_inset
+
+ there exists some 
+\begin_inset Formula $T\subseteq U$
+\end_inset
+
+ s.t 
+\begin_inset Formula $(S\backslash A)\cup T\in D_{i}({\bf q})$
+\end_inset
+
+.
+ We know that 
+\begin_inset Formula $T\subseteq U\backslash\{j\}$
+\end_inset
+
+ because 
+\begin_inset Formula $j$
+\end_inset
+
+ is not in any demand set.
+ It is clear that this is also a solution for the first problem as the demand
+ sets for 
+\begin_inset Formula ${\bf q_{-j}}$
+\end_inset
+
+, 
+\begin_inset Formula ${\bf q}$
+\end_inset
+
+ are the same when the price of 
+\begin_inset Formula $j$
+\end_inset
+
+ is 
+\begin_inset Formula $\infty$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+Finally, all valuations in the new 
+\begin_inset Formula $LP$
+\end_inset
+
+ are GS so we have a reduction of the original problem that can be solved
+ with the method we have described (ellipsoid algorithm etc.).
+ Thus 
+\begin_inset Formula $m\cdot n$
+\end_inset
+
+ times we solve a problem we have shown to have a polynomial solution in
+ 
+\begin_inset Formula $m,n$
+\end_inset
+
+ (note we have decreasing sizes of this problem at each iteration) So the
+ total solution is polynomial.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\square$
+\end_inset
+
 
 \end_layout
 
