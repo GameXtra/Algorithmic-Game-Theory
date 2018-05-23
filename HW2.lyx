@@ -6,9 +6,7 @@
 \origin unavailable
 \textclass article
 \begin_preamble
-\usepackage{amsmath}
-\usepackage{algorithm}
-\usepackage[noend]{algpseudocode}
+\usepackage{algorithm,algpseudocode}
 \end_preamble
 \use_default_options true
 \maintain_unincluded_children false
@@ -77,7 +75,7 @@
 \begin_body
 
 \begin_layout Title
-Algorithmic Game Theory - HW1
+Algorithmic Game Theory - HW2
 \end_layout
 
 \begin_layout Author
@@ -92,7 +90,333 @@ Gross substitute valuations
 Problem 1:
 \end_layout
 
+\begin_layout Subsection*
+Part 1:
+\end_layout
+
 \begin_layout Standard
+Let 
+\begin_inset Formula $v$
+\end_inset
+
+ be a GS valuation, 
+\begin_inset Formula $[m]=<1,....,m>$
+\end_inset
+
+ the greedy ordering of items.
+ We shall prove that for any 
+\begin_inset Formula $t\in\{1,..,m\}$
+\end_inset
+
+ the set 
+\begin_inset Formula $S_{t}=\{1,...,t\}$
+\end_inset
+
+ satisfies:
+\begin_inset Formula 
+\[
+S_{t}=\underset{T\subseteq U;|T|=t}{\text{argmax}}v(T)-\sum_{j\in T}p_{j}
+\]
+
+\end_inset
+
+ We use the following facts: 
+\end_layout
+
+\begin_layout Enumerate
+For any GS 
+\begin_inset Formula $v$
+\end_inset
+
+, then for any 
+\begin_inset Formula ${\bf p}$
+\end_inset
+
+ 
+\begin_inset Formula $v'$
+\end_inset
+
+ defined by 
+\begin_inset Formula $v'(S)=v(S)-\sum_{j\in S}p_{j}$
+\end_inset
+
+ is GS.
+\end_layout
+
+\begin_layout Enumerate
+For any GS 
+\begin_inset Formula $v$
+\end_inset
+
+, then for any 
+\begin_inset Formula $S\subseteq[m]$
+\end_inset
+
+ and 
+\begin_inset Formula $T\subseteq[m]\backslash S$
+\end_inset
+
+, s.t 
+\begin_inset Formula $|T|\geq2$
+\end_inset
+
+ then for every 
+\begin_inset Formula $i\in T$
+\end_inset
+
+:
+\begin_inset Formula $v(i|S)+v(T\backslash\{i\}|S)\leq\underset{j\in T,j\neq i}{\text{max}}\{v(j|S)+v(T\backslash\{j\}|S)\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Proof:
+\end_layout
+
+\begin_layout Subsection*
+GS valuations are Submodular valutions:
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $v$
+\end_inset
+
+ be some GS valuation over 
+\begin_inset Formula $[m].$
+\end_inset
+
+ Let there be some 
+\begin_inset Formula $S\subseteq T\subseteq[m]$
+\end_inset
+
+.
+ We shall show that for every 
+\begin_inset Formula $i\notin T$
+\end_inset
+
+: 
+\begin_inset Formula $v(i|S)\geq v(i|T)$
+\end_inset
+
+.
+ Let there be some 
+\begin_inset Formula $j\notin T$
+\end_inset
+
+ we will show:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+v(S\cup\{j\})-v(S)\geq v(T\cup\{j\})-v(T)
+\]
+
+\end_inset
+
+ We define 
+\begin_inset Formula ${\bf p}(i)=\begin{cases}
+0 & i\in T\cup\{j\}\\
++\infty & \text{else}
+\end{cases}$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+It is clear that 
+\begin_inset Formula $T\cup\{j\}\in D({\bf p})$
+\end_inset
+
+ as all prices of items in this set are 
+\begin_inset Formula $0$
+\end_inset
+
+ and we assume monotonicity of 
+\begin_inset Formula $v$
+\end_inset
+
+.
+ Define 
+\begin_inset Formula $\epsilon=v(T\cup\{j\})-v(T)=v(j|T)$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+We now define 
+\begin_inset Formula ${\bf p}^{\epsilon}=\begin{cases}
+{\bf p}(i) & i\neq j\\
+{\bf p}(j)+\epsilon=\epsilon & i=j
+\end{cases}$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+It is clear that 
+\begin_inset Formula ${\bf p}^{\epsilon}\geq{\bf p}$
+\end_inset
+
+.
+ And the only item for which there is a strict increase is 
+\begin_inset Formula $j$
+\end_inset
+
+.
+ By the GS assumption we have that there exists some 
+\begin_inset Formula $B\subseteq[m]$
+\end_inset
+
+ s.t:
+\begin_inset Formula 
+\[
+T\cup B\in D({\bf p}^{\epsilon})
+\]
+
+\end_inset
+
+It is clear that all items which have 
+\begin_inset Formula $+\infty$
+\end_inset
+
+ pricing are not in any demand set.
+ By the way we defined the price of 
+\begin_inset Formula $j$
+\end_inset
+
+ we have:
+\begin_inset Formula 
+\[
+v(T\cup\{j\})-\sum_{i\in T\cup\{j\}}p_{i}=v(T)+v(j|T)-\sum_{i\in T}p_{i}-p_{j}=v(T)+v(j|T)-\sum_{i\in T}p_{i}-p_{j}=v(T)-\sum_{i\in T}p_{i}
+\]
+
+\end_inset
+
+ So both 
+\begin_inset Formula $T$
+\end_inset
+
+ and 
+\begin_inset Formula $T\cup\{j\}$
+\end_inset
+
+ have the same utility and are both in 
+\begin_inset Formula $D({\bf p}^{\epsilon})$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+We now define 
+\begin_inset Formula ${\bf q}^{\epsilon}=\begin{cases}
+{\bf p}^{\epsilon}(i) & i\notin T\backslash S\\
++\infty & i\in T\backslash S
+\end{cases}$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+It is clear that 
+\begin_inset Formula ${\bf q}^{\epsilon}\geq{\bf p}^{\epsilon}$
+\end_inset
+
+.
+ By the GS assumption, and the previous result that 
+\begin_inset Formula $T\cup\{j\}\in D({\bf p}^{\epsilon})$
+\end_inset
+
+ we have that exists some 
+\begin_inset Formula $C\subseteq[m]$
+\end_inset
+
+ s.t:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+(S\cup\{j\})\cup C\in D({\bf q}^{\epsilon})
+\]
+
+\end_inset
+
+It is clear that all items with 
+\begin_inset Formula $+\infty$
+\end_inset
+
+ pricing are not part of any set in 
+\begin_inset Formula $D({\bf q}^{\epsilon})$
+\end_inset
+
+, so 
+\begin_inset Formula $S\cup\{j\}\in D({\bf q}^{\epsilon})$
+\end_inset
+
+.
+ By definition we have the the utility of 
+\begin_inset Formula $S\cup\{j\}$
+\end_inset
+
+ us at least that of 
+\begin_inset Formula $S$
+\end_inset
+
+.
+ So:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+v(S\cup\{j\})-\sum_{i\in S\cup\{j\}}p_{i}\geq v(S)-\sum_{i\in S}p_{i}
+\]
+
+\end_inset
+
+ Haavarat agafim:
+\begin_inset Formula 
+\[
+v(S\cup\{j\})-v(S)\geq\sum_{i\in S\cup\{j\}}p_{i}-\sum_{i\in S}p_{i}=p_{j}=\epsilon
+\]
+
+\end_inset
+
+ So we have 
+\begin_inset Formula $v(j|S)\geq\epsilon$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+But recall that we defined 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ to be 
+\begin_inset Formula $v(T\cup\{j\})-v(T)=v(j|T)$
+\end_inset
+
+.
+ So we have:
+\begin_inset Formula 
+\[
+v(j|S)\geq v(j|T)
+\]
+
+\end_inset
+
+ Done 
 \begin_inset Formula $\square$
 \end_inset
 
