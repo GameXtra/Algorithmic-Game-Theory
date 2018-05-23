@@ -91,7 +91,11 @@ Problem 1:
 \end_layout
 
 \begin_layout Subsection*
-Part 1:
+Part 1 - 
+\begin_inset Formula $S_{t}$
+\end_inset
+
+ maximizes utility:
 \end_layout
 
 \begin_layout Standard
@@ -115,7 +119,7 @@ Let
  satisfies:
 \begin_inset Formula 
 \[
-S_{t}=\underset{T\subseteq U;|T|=t}{\text{argmax}}v(T)-\sum_{j\in T}p_{j}
+S_{t}=\underset{T\subseteq U;|T|=t}{\text{argmax}}v(T)-\sum_{j\in T}p_{j}=\underset{T\subseteq U;|T|=t}{\text{argmax}}u(T)
 \]
 
 \end_inset
@@ -171,12 +175,323 @@ For any GS
 
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Standard
+
+\series bold
 Proof:
+\series default
+ 1
+\begin_inset Newline newline
+\end_inset
+
+Let there be some 
+\begin_inset Formula $t\in\{1,..,m\}$
+\end_inset
+
+.
+ We shall prove that 
+\begin_inset Formula $S_{t}=\underset{T\subseteq U;|T|=t}{\text{argmax}}u(T)$
+\end_inset
+
+.
+ For this 
+\begin_inset Formula $t$
+\end_inset
+
+ we will prove the claim by induction that at each stage of the algorithm
+ the current set 
+\begin_inset Formula $S_{k}$
+\end_inset
+
+ where 
+\begin_inset Formula $k\in\{0,1,...,t\}$
+\end_inset
+
+ us a subset of some 
+\begin_inset Formula $t$
+\end_inset
+
+ sized set which maximizes 
+\begin_inset Formula $u(\cdot)$
+\end_inset
+
+ and we define 
+\begin_inset Formula $S_{0}=\emptyset$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Base Case 
+\begin_inset Formula $k=0$
+\end_inset
+
+:
+\begin_inset Newline newline
+\end_inset
+
+
+\series default
+We are immediately before the first iteration of the while loop.
+ The empty set is of course a subset of some 
+\begin_inset Formula $t$
+\end_inset
+
+ sized utility maximizing set so the condition holds in the algorithm's
+ initial state.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Assume for 
+\begin_inset Formula $k-1$
+\end_inset
+
+:
+\begin_inset Newline newline
+\end_inset
+
+
+\series default
+We also assume that 
+\begin_inset Formula $1\leq k\leq t$
+\end_inset
+
+.
+ By the inductive assumption we have for 
+\begin_inset Formula $S^{*}$
+\end_inset
+
+, some 
+\begin_inset Formula $t$
+\end_inset
+
+ sized set which maximizes 
+\begin_inset Formula $u(\cdot)$
+\end_inset
+
+, that 
+\begin_inset Formula $S_{k-1}\subseteq S^{*}$
+\end_inset
+
+.
+ Denote by 
+\begin_inset Formula $x_{k}$
+\end_inset
+
+ the element added to 
+\begin_inset Formula $S_{k-1}$
+\end_inset
+
+ at the 
+\begin_inset Formula $k^{th}$
+\end_inset
+
+ iteration.
+\begin_inset Newline newline
+\end_inset
+
+If 
+\begin_inset Formula $x_{k}\in S^{*}$
+\end_inset
+
+ then 
+\begin_inset Formula $S_{k}=S_{k-1}\cup\{x_{k}\}\subseteq S^{*}$
+\end_inset
+
+ and we are done.
+\begin_inset Newline newline
+\end_inset
+
+Assume 
+\begin_inset Formula $x_{k}\notin S^{*}$
+\end_inset
+
+.
+ Define 
+\begin_inset Formula $T^{*}$
+\end_inset
+
+ to be 
+\begin_inset Formula $S^{*}\backslash S_{k-1}$
+\end_inset
+
+.
+ We now apply lemma 
+\begin_inset Formula $(2)$
+\end_inset
+
+ Using:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $S=S_{k-1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $T=T^{*}\cup\{x_{k}\}$
+\end_inset
+
+ (note that 
+\begin_inset Formula $|T^{*}|\geq1$
+\end_inset
+
+ so 
+\begin_inset Formula $|T|\geq2$
+\end_inset
+
+ as needed)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $i=x_{k}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Using lemma 
+\begin_inset Formula $(1)$
+\end_inset
+
+: we use for 
+\begin_inset Formula $v$
+\end_inset
+
+ the 
+\begin_inset Formula $GS$
+\end_inset
+
+ valuation 
+\begin_inset Formula $u(S)=v(S)-\sum_{j\in S}p_{j}$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+In total we have: 
+\begin_inset Formula 
+\[
+u(x_{k}|S_{k-1})+u(T^{*}\cup\{x_{k}\}\backslash\{x_{k}\}|S_{k-1})\leq\underset{j\in T,j\neq i}{\text{max}}\{u(j|S_{k-1})+u(T^{*}\cup\{x_{k}\}\backslash\{j\}|S_{k-1})\}
+\]
+
+\end_inset
+
+ So for some 
+\begin_inset Formula $j$
+\end_inset
+
+ we have:
+\begin_inset Formula 
+\[
+u(x_{k}|S_{k-1})+u(T^{*}|S_{k-1})\leq u(j|S_{k-1})+u(T^{*}\cup\{x_{k}\}\backslash\{j\}|S_{k-1})\}
+\]
+
+\end_inset
+
+ Recall that the greedy algorithm chose: 
+\begin_inset Formula 
+\begin{align*}
+x_{k} & \in\underset{j\in[m]}{\text{argmax}}v(j|S_{k-1})-p_{j}\\
+ & =\underset{j\in[m]}{\text{argmax}}v(\{j\}\cup S_{k-1})-v(S_{k-1})-p_{j}\\
+ & =\underset{j\in[m]}{\text{argmax}}\left[v(\{j\}\cup S_{k-1})-\sum_{i\in\{j\}\cup S_{k-1}}p_{i}\right]-\left[v(S_{k-1})-\sum_{i\in S_{k-1}}p_{i}\right]\\
+ & =\underset{j\in[m]}{\text{argmax}}u(\{j\}\cup S_{k-1})-u(S_{k-1})\\
+ & =\underset{j\in[m]}{\text{argmax}}u(j|S_{k-1})
+\end{align*}
+
+\end_inset
+
+ So as a result we have:
+\begin_inset Formula 
+\[
+u(x_{k}|S_{k-1})\geq u(j|S_{k-1})
+\]
+
+\end_inset
+
+ Using this fact we know that:
+\begin_inset Formula 
+\[
+u(T^{*}|S_{k-1})\leq u(T^{*}\cup\{x_{k}\}\backslash\{j\}|S_{k-1})
+\]
+
+\end_inset
+
+ Add 
+\begin_inset Formula $u(S_{k-1})$
+\end_inset
+
+ to both sides:
+\begin_inset Formula 
+\[
+u(T^{*}|S_{k-1})+u(S_{k-1})\leq u(T^{*}\cup\{x_{k}\}\backslash\{j\}|S_{k-1})+u(S_{k-1})
+\]
+
+\end_inset
+
+ Equivalently:
+\begin_inset Formula 
+\[
+u(S^{*})\leq u(T^{*}\cup\{x_{k}\}\backslash\{j\}\cup S_{k-1})
+\]
+
+\end_inset
+
+Where 
+\begin_inset Formula $T^{*}\cup\{x_{k}\}\backslash\{j\}\cup S_{k-1}$
+\end_inset
+
+ is a 
+\begin_inset Formula $t$
+\end_inset
+
+ sized set, and we have acheived a utility of at least that of 
+\begin_inset Formula $S^{*}$
+\end_inset
+
+.
+ Of course 
+\begin_inset Formula $S_{k-1}$
+\end_inset
+
+ is a subset of this set so we are done with the induction.
+\begin_inset Newline newline
+\end_inset
+
+Now for 
+\begin_inset Formula $k=t$
+\end_inset
+
+ we have that the set 
+\begin_inset Formula $S_{t}$
+\end_inset
+
+ is a set of size 
+\begin_inset Formula $t$
+\end_inset
+
+ which maximizes the utility as needed.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $\square$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection*
-GS valuations are Submodular valutions:
+Part 2 - GS valuations are Submodular valutions:
 \end_layout
 
 \begin_layout Standard
@@ -423,12 +738,225 @@ v(j|S)\geq v(j|T)
 
 \end_layout
 
+\begin_layout Subsection*
+Part 3 - 
+\begin_inset Formula $v$
+\end_inset
+
+ is GS implies it is greedy solvable, its demand query can be computed in
+ 
+\begin_inset Formula $poly(m)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+First it is clear that a run of the 
+\begin_inset Formula $\text{greedy algorithm}$
+\end_inset
+
+ takes poly time: The while loop runs for at most 
+\begin_inset Formula $|M|$
+\end_inset
+
+ steps.
+ In each step we must find the max marginal utility out of at most 
+\begin_inset Formula $|M|$
+\end_inset
+
+ items (even if we re-compute the utility from scratch we still add at most
+ a factor of 
+\begin_inset Formula $|M|$
+\end_inset
+
+).
+ In total this is polynomial.
+\begin_inset Newline newline
+\end_inset
+
+We now must show that the 
+\begin_inset Formula $\text{greedy algorithm}$
+\end_inset
+
+ returns some bundle from 
+\begin_inset Formula $D({\bf p})$
+\end_inset
+
+ for any price vector 
+\begin_inset Formula ${\bf p}$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Claim:
+\series default
+ When the 
+\begin_inset Formula $\text{greedy algorithm}$
+\end_inset
+
+ halts, assume this occurs at some iteration 
+\begin_inset Formula $t$
+\end_inset
+
+, the current 
+\begin_inset Formula $S=S_{t}$
+\end_inset
+
+ belongs to 
+\begin_inset Formula $D({\bf p})$
+\end_inset
+
+ .
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+No set smaller than 
+\begin_inset Formula $S_{t}$
+\end_inset
+
+ has greater utility: 
+\series default
+First of all from 
+\bar under
+part 1
+\bar default
+ 
+\begin_inset Formula $S_{t}$
+\end_inset
+
+ is a set of size 
+\begin_inset Formula $t$
+\end_inset
+
+ which maximizes utility, and so is every one of the bundles 
+\begin_inset Formula $S_{k}$
+\end_inset
+
+ for 
+\begin_inset Formula $k<t$
+\end_inset
+
+.
+ As we only add items whose marginal utility is positive we know that the
+ utility of 
+\begin_inset Formula $S_{t}$
+\end_inset
+
+ is strictly larger than that of any of the previous sets, and because they
+ are all optimal for their sizes we know that no set of a smaller size has
+ greater utility than 
+\begin_inset Formula $S_{t}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+No set larger than 
+\begin_inset Formula $S_{t}$
+\end_inset
+
+ has greater utility: 
+\series default
+It is enough to show that no 
+\begin_inset Formula $S_{k}$
+\end_inset
+
+ for 
+\begin_inset Formula $k$
+\end_inset
+
+ larger than 
+\begin_inset Formula $t$
+\end_inset
+
+ has greater utility as these have maximal utilities for their size.
+ We have halted when the next optimal 
+\begin_inset Formula $j$
+\end_inset
+
+ had non-positive utility, and so for all 
+\begin_inset Formula $j\notin S_{t}$
+\end_inset
+
+ we have 
+\begin_inset Formula $v(j|S_{t})-p_{j}\leq0$
+\end_inset
+
+.
+ So it will not increase utility.
+ We must make sure that it is not optimal to take this 
+\begin_inset Formula $j$
+\end_inset
+
+ in order to enjoy a further increase in the future.
+ Using 
+\bar under
+part 2
+\bar default
+ we use the submodularity of 
+\begin_inset Formula $v$
+\end_inset
+
+, and the fact that for all 
+\begin_inset Formula $k>t$
+\end_inset
+
+ 
+\begin_inset Formula $S_{t}\subseteq S_{k}$
+\end_inset
+
+, for all 
+\begin_inset Formula $j\notin S_{t}$
+\end_inset
+
+ : 
+\begin_inset Formula $v(j|S_{k})-p_{j}\leq v(j|S_{t})-p_{j}\leq0$
+\end_inset
+
+.
+ So no further addition will increase utility.
+\end_layout
+
+\begin_layout Standard
+Thus no set of larger or smaller size has greater utility, and 
+\begin_inset Formula $S_{t}$
+\end_inset
+
+ has the greatest utility of sets of its size so 
+\begin_inset Formula $S_{t}\in D({\bf p})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\square$
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section*
 Problem 2:
 \end_layout
 
 \begin_layout Standard
-asd
+
 \end_layout
 
 \begin_layout Part
