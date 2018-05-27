@@ -1808,5 +1808,222 @@ Assume that we have some prices
  of the OPT!
 \end_layout
 
+\begin_layout Part
+Posted Prices Mechanism
+\end_layout
+
+\begin_layout Section*
+Problem 4a:
+\end_layout
+
+\begin_layout Subsection*
+1.
+\end_layout
+
+\begin_layout Standard
+We have 
+\begin_inset Formula $n$
+\end_inset
+
+ agent and 
+\begin_inset Formula $m$
+\end_inset
+
+ items.
+ Each agent hold a valuation function 
+\begin_inset Formula $v_{i}:2^{m}\rightarrow\mathbb{R}_{\ge0}$
+\end_inset
+
+.
+ Let's denote 
+\begin_inset Formula $S=\{S_{1},...,S_{n}\}$
+\end_inset
+
+ where 
+\begin_inset Formula $S_{i}\in2^{m}$
+\end_inset
+
+ - a subgroup of items 
+\begin_inset Formula $S_{i}\subseteq[m]$
+\end_inset
+
+, and 
+\begin_inset Formula $\forall i\ne j.S_{i}\cap S_{j}=\emptyset$
+\end_inset
+
+ as the optimal solution.
+ 
+\begin_inset Formula $S=\underset{A\in\{A|A\in2^{2^{m}}\wedge\forall i\ne j.A_{i}\cap A_{j}=\emptyset\}}{argmax}(\sum_{i}u_{i}(A_{i}))$
+\end_inset
+
+.
+ We need To find 
+\begin_inset Formula $p$
+\end_inset
+
+ - prices such that the following holds for all 
+\begin_inset Formula $x$
+\end_inset
+
+ allocation which was created by arbitrary order of the agent ariving in
+ the store:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\forall i\in[n].u_{i}(x_{i},p)+\mathbb{I}(S_{i}\:is\medspace sold)\cdot p(S_{i})\ge\frac{v_{i}(S_{i})}{2}
+\]
+
+\end_inset
+
+Now this can be easily proven.
+ Let first set 
+\begin_inset Formula $p$
+\end_inset
+
+ to be a function that for each 
+\begin_inset Formula $i$
+\end_inset
+
+ 
+\begin_inset Formula $p(S_{i})=v_{i}(S_{i})/2$
+\end_inset
+
+ Assuming that 
+\begin_inset Formula $S_{i}$
+\end_inset
+
+ was sold then 
+\begin_inset Formula $u_{i}(x_{i},p)+\mathbb{I}(S_{i}\:is\medspace sold)\cdot p(S_{i})=u_{i}(x_{i},p)+1\cdot\frac{v_{i}(S_{i})}{2}\ge\frac{v_{i}(S_{i})}{2}$
+\end_inset
+
+.
+ Now assuming that the bundle was not brought then we can assume the agent
+ either only took 
+\begin_inset Formula $S_{i}$
+\end_inset
+
+, in which case 
+\begin_inset Formula $u_{i}(x_{i},p)=\frac{v_{i}(S_{i})}{2}$
+\end_inset
+
+ or he took a bundle which maximize his utility even more and 
+\begin_inset Formula $S_{i}$
+\end_inset
+
+ in which case 
+\begin_inset Formula $u_{i}(x_{i},p)\ge\frac{v_{i}(S_{i})}{2}$
+\end_inset
+
+.
+ As such for both cases it presist that this equaltion stand when giving
+ the prices above.
+\end_layout
+
+\begin_layout Subsection*
+2.
+\end_layout
+
+\begin_layout Standard
+Now let's show that using the last equltion we can say that the solution
+ we recive using the greedy algorithm and the arbitrary agent order is no
+ less then half of the 
+\begin_inset Formula $OPT-SW$
+\end_inset
+
+.
+ Lets sum all the agent utility:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\sum_{i}u_{i}(x_{i},p)=\sum_{i}\sum_{j\in x_{i}}v_{i}(S_{j})-\sum_{i}\sum_{j\in x_{i}}p(S_{j})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Lets rearange:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\sum_{i}\sum_{j\in x_{i}}v_{i}(S_{j})=\sum_{i}u_{i}(x_{i},p)+\sum_{i}\sum_{j\in x_{i}}p(S_{j})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now notice that the left side of the equaltion is actually the 
+\begin_inset Formula $SW$
+\end_inset
+
+! Now because we know that it doesn't matter which agent bougth bundle 
+\begin_inset Formula $j$
+\end_inset
+
+, we only need to know if someone paid for it, the equaltion can use 
+\begin_inset Formula $\mathbb{I}(S_{i}\:is\medspace sold)\cdot p(S_{i})$
+\end_inset
+
+ to sum over all 
+\begin_inset Formula $i$
+\end_inset
+
+ in a more simpler loop:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+SW=\sum_{i}\sum_{j\in x_{i}}v_{i}(S_{j})=\sum_{i}(u_{i}(x_{i},p)+\mathbb{I}(S_{i}\:is\medspace sold)\cdot p(S_{i}))
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now we also know from the last subsection that for each allocation of ours
+ 
+\begin_inset Formula $u_{i}(x_{i},p)+\mathbb{I}(S_{i}\:is\medspace sold)\cdot p(S_{i})\ge\frac{v_{i}(S_{i})}{2}$
+\end_inset
+
+ and as such:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+SW=\sum_{i}\sum_{j\in x_{i}}v_{i}(S_{j})=\sum_{i}(u_{i}(x_{i},p)+\mathbb{I}(S_{i}\:is\medspace sold)\cdot p(S_{i}))\ge\sum_{i}\frac{v_{i}(S_{i})}{2}=\frac{\sum_{i}v_{i}(S_{i})}{2}=\frac{OPT-SW}{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This shows that the 
+\begin_inset Formula $SW$
+\end_inset
+
+ we get is at least half of the optimal 
+\begin_inset Formula $SW$
+\end_inset
+
+!
+\end_layout
+
 \end_body
 \end_document
