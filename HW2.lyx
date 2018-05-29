@@ -207,7 +207,7 @@ Let there be some
 \begin_inset Formula $k\in\{0,1,...,t\}$
 \end_inset
 
- us a subset of some 
+ is a subset of some 
 \begin_inset Formula $t$
 \end_inset
 
@@ -678,11 +678,15 @@ It is clear that all items with
 \end_inset
 
 .
- By definition we have the the utility of 
+ Because 
+\begin_inset Formula $S\cup\{j\}\in D({\bf q}^{\epsilon})$
+\end_inset
+
+ we have the the utility of 
 \begin_inset Formula $S\cup\{j\}$
 \end_inset
 
- us at least that of 
+ is at least that of 
 \begin_inset Formula $S$
 \end_inset
 
@@ -1217,7 +1221,7 @@ For each bidder
 \end_inset
 
  can be assigned to bidder 
-\begin_inset Formula $j$
+\begin_inset Formula $i$
 \end_inset
 
 .
@@ -1541,8 +1545,7 @@ unique
 \end_layout
 
 \begin_layout Subsubsection*
-3 ##################################### assume single item instead of multi
- items
+3 
 \end_layout
 
 \begin_layout Standard
@@ -1704,7 +1707,7 @@ This cannot be! And as such the prices a Walrasian prices.
 \end_layout
 
 \begin_layout Subsubsection*
-4########################### assume single item instead of multi items
+4
 \end_layout
 
 \begin_layout Standard
@@ -1743,7 +1746,7 @@ We want to change the edges in such a way that it holds that
 \begin_inset Formula $\epsilon$
 \end_inset
 
- from all the edge might couse as a .
+ from all the edge might couse as a negative cycle.
  While this will indeed solve the problem, we cannot be sure of the resulting
  paths to be minimal any longer, as there might be negative cycles now.
  But this can be left aside as there were no 
@@ -1754,8 +1757,7 @@ We want to change the edges in such a way that it holds that
 \end_layout
 
 \begin_layout Section*
-Problem 3b:###############from michal article.
- Maybe edit?
+Problem 3b:
 \end_layout
 
 \begin_layout Standard
