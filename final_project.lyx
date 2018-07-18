@@ -1379,7 +1379,12 @@ weaker model
 \begin_inset Quotes erd
 \end_inset
 
- is 
+ is validated by this small example.
+ We move on to generalize the previous example for any 
+\begin_inset Formula $k,D$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -1478,7 +1483,11 @@ Define
 \begin_inset Formula $r$
 \end_inset
 
- is some sequence of requests which the algorithm 
+ is some sequence of 
+\begin_inset Formula $T$
+\end_inset
+
+ requests which the algorithm 
 \begin_inset Formula $A$
 \end_inset
 
@@ -1511,10 +1520,14 @@ helper configurations
 \begin_inset Formula $t\in\{0,....,T\}$
 \end_inset
 
- :
+ and for all 
+\begin_inset Formula $l\in\{0,....,k\cdot(D+1)-1\}$
+\end_inset
+
+:
 \begin_inset Formula 
 \[
-C_{t}^{*A_{D}}[l]:=C_{t}^{A}[l\mod(D+1)]
+(C_{t}^{*A_{D}})_{l}:=(C_{t}^{A})_{\lfloor\frac{l}{(D+1)}\rfloor}
 \]
 
 \end_inset
@@ -1523,7 +1536,7 @@ C_{t}^{*A_{D}}[l]:=C_{t}^{A}[l\mod(D+1)]
 \end_layout
 
 \begin_layout Enumerate
-We now define the valid set of configurations used by 
+We now define the (valid) set of configurations used by 
 \begin_inset Formula $A_{D}$
 \end_inset
 
@@ -1535,9 +1548,9 @@ We now define the valid set of configurations used by
  (note we start with 1 as we cannot define the initial configuration):
 \begin_inset Formula 
 \[
-\forall l\in\{1,...,k\cdot(D+1)\}:\ C_{t}^{A_{D}}[l]:=\begin{cases}
-\bar{r_{t}} & C^{A_{D}}[l]\text{ serviced \ensuremath{r_{t}} during the previous D turns}\\
-C_{t}^{*A_{D}}[l] & \text{else}
+\forall l\in\{0,...,k\cdot(D+1)-1\}:\ (C_{t}^{A_{D}})_{l}:=\begin{cases}
+\bar{r_{t}} & (C^{A_{D}})_{l}\text{ serviced \ensuremath{r_{t}} before at most D turns}\\
+(C_{t}^{*A_{D}})_{l} & \text{else}
 \end{cases}
 \]
 
@@ -1582,7 +1595,7 @@ As
 
 .
  Assume that 
-\begin_inset Formula $C_{t}^{A}[l]$
+\begin_inset Formula $(C_{t}^{A})_{l}$
 \end_inset
 
  was the server which serviced 
@@ -1595,7 +1608,7 @@ As
 \end_inset
 
  
-\begin_inset Formula $C_{t}^{*A_{D}}[l\cdot(D+1)+i]:=r_{t}]$
+\begin_inset Formula $(C_{t}^{*A_{D}})_{l\cdot(D+1)+i}:=r_{t}$
 \end_inset
 
 .
@@ -1605,7 +1618,7 @@ As
 \end_inset
 
  the server 
-\begin_inset Formula $C^{A_{D}}[a]$
+\begin_inset Formula $(C^{A_{D}})_{a}$
 \end_inset
 
  has not serviced any request in the past 
@@ -1621,13 +1634,13 @@ As
 \begin_inset Formula $D$
 \end_inset
 
- requests.
+ requests, contradiction.
  Thus, by definition for this 
 \begin_inset Formula $a$
 \end_inset
 
  we have 
-\begin_inset Formula $C_{t}^{A_{D}}[a]=C_{t}^{*A_{D}}[a]=r_{t}$
+\begin_inset Formula $(C_{t}^{A_{D}})_{a}=(C_{t}^{*A_{D}})_{a}=r_{t}$
 \end_inset
 
  proving the claim.
@@ -1650,7 +1663,7 @@ The cost acheived by algorithm
 \begin_inset Formula $D+1$
 \end_inset
 
- times that of 
+ times that acheived by 
 \begin_inset Formula $A$
 \end_inset
 
@@ -1658,16 +1671,54 @@ The cost acheived by algorithm
 \begin_inset Newline newline
 \end_inset
 
-Denote the cost of the 
-\begin_inset Formula $i^{th}$
+We start by showing:
+\begin_inset Formula 
+\begin{equation}
+\sum_{i=1}^{T}d^{*}(C_{i-1}^{A_{D}},C_{i}^{A_{D}})\leq\sum_{i=1}^{T}d^{*}(C_{i-1}^{*A_{D}},C_{i}^{*A_{D}})
+\end{equation}
+
 \end_inset
 
- transition by 
-\begin_inset Formula $\text{cost}_{i}$
+Notice that for any server one of two cases holds: 
+\end_layout
+
+\begin_layout Enumerate
+It makes the same transition in both sums.
+\end_layout
+
+\begin_layout Enumerate
+It is part of a 
+\begin_inset Quotes eld
 \end_inset
 
-, its value is 
-\begin_inset Formula $d(C_{i-1}^{A_{D}},C_{i}^{A_{D}})$
+servicing sequence
+\begin_inset Quotes erd
+\end_inset
+
+ starting with some 
+\begin_inset Formula $r_{t}$
+\end_inset
+
+, followed by 
+\begin_inset Formula $D$
+\end_inset
+
+ appearances of 
+\begin_inset Formula $\bar{r_{t}}$
+\end_inset
+
+, and ending with some 
+\begin_inset Formula $x\in M$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+We now show that any sequence as such is smaller than it's corresponding
+ sequence in the series of configurations 
+\begin_inset Formula $C^{*A_{D}}$
 \end_inset
 
 .
@@ -1675,33 +1726,90 @@ Denote the cost of the
 \begin_inset Newline newline
 \end_inset
 
-In the first transition we make a transition from the initial configuration
- 
-\begin_inset Formula $C_{0}^{A_{D}}$
-\end_inset
-
- into 
-\begin_inset Formula $C_{1}^{A_{D}}$
+Denote some server by 
+\begin_inset Formula $(C^{A_{D}})_{l}$
 \end_inset
 
 .
- The cost of this transition can be bounded by:
+ If we sum the total distances covered in some servicing sequence by this
+ server we have that: 
 \begin_inset Formula 
 \[
-\text{cost}_{1}\leq d(C_{0}^{A_{D}},C_{0}^{*A_{D}})+d(C_{0}^{*A_{D}},C_{1}^{A_{D}})=\Phi(C_{0}^{A_{D}},C_{0}^{A})+d(C_{0}^{*A_{D}},C_{1}^{A_{D}})
+\sum_{i=0}^{D}d^{*}\left((C_{t+i}^{A_{D}})_{l},(C_{t+i+1}^{A_{D}})_{l}\right)=d^{*}(r_{t},(C_{t+D+1}^{*A_{D}})_{l})
 \]
 
 \end_inset
 
- For any 
-\begin_inset Formula $t>1$
+Where we used the definition of the distance function and the fact that
+ the last point in the sequence must be satisfy 
+\begin_inset Formula $(C_{t+D+1}^{A_{D}})_{l}=(C_{t+D+1}^{*A_{D}})_{l}$
 \end_inset
 
-: 
-\begin_inset Formula $\text{cost}_{t}=d()$
+.
+ This is the case as no request was made in the previous 
+\begin_inset Formula $D$
+\end_inset
+
+ turns.
+\begin_inset Newline newline
+\end_inset
+
+From the triangle inequality we have that: 
+\begin_inset Formula 
+\[
+d^{*}(r_{t},(C_{t+D+1}^{*A_{D}})_{l})\leq\sum_{i=1}^{D}d^{*}\left((C_{t+i}^{*A_{D}})_{l},(C_{t+i+1}^{*A_{D}})_{l}\right)
+\]
+
+\end_inset
+
+Thus showing 
+\begin_inset Formula $(1)$
+\end_inset
+
+.
+\begin_inset Newline newline
 \end_inset
 
 
+\begin_inset Newline newline
+\end_inset
+
+We now bound the cost of 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\sum_{i=1}^{T}d^{*}(C_{i-1}^{*A_{D}},C_{i}^{*A_{D}})$
+\end_inset
+
+ to prove the claim.
+ Except for the first transition, during every transition we move every
+ 
+\begin_inset Formula $D+1$
+\end_inset
+
+ coordinates in 
+\begin_inset Formula $C^{*A_{D}}$
+\end_inset
+
+ by the same distance as their matching coordinate in 
+\begin_inset Formula $C^{A}$
+\end_inset
+
+.
+ The first transition depends on 
+\begin_inset Formula $C_{0}^{A_{D}}$
+\end_inset
+
+ and can be regarded as a constant.
 \end_layout
 
 \begin_layout Subsubsection*
