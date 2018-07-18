@@ -79,18 +79,20 @@ Itay Itzhak, Ido Kessler & Jonathan Somer
 \end_layout
 
 \begin_layout Section*
-Introduction
+CTRL F '<<<' Introduction
+\end_layout
+
+\begin_layout Standard
+<<<< START WITH MAJOR WOW!>>>>
 \end_layout
 
 \begin_layout Standard
 The recent advances in the field of autonomous transportation have created
  demand for solving many practical problems in order to efficiently integrate
  this new technology in our lives.
- The US secretary of transporation has estimated that by 2025 autonomous
- vehicles will be in use worldwide.
  It could be the case that major companies like Google, Uber & Tesla will
- hold large scale fleets of vehicles and make them available as a service.
- This is the autonomous taxi setting.
+ hold large scale fleets of vehicles and make them available as a service;
+ this is the autonomous taxi setting.
  Another option is that people will make their own private vehicles, while
  not in use, available for use by other drivers.
  In any case the problem of allocating autonomous vehicles to passengers
@@ -99,29 +101,40 @@ The recent advances in the field of autonomous transportation have created
 \begin_inset Newline newline
 \end_inset
 
+
+\begin_inset Newline newline
+\end_inset
+
 In this paper we will look into the autonomous taxi setting where we have
  control over an entire fleet of vehicles and must allocate them to rides
  according to requests made by potential passengers.
  In this setting we have one master controller over all of the taxis.
- As of today each taxi driver performs in a selfish manner so the transition
- to central controlled fleets, once only a theoretical concept used in determini
-ng the Price of Anarchy for different systems, now becomes concrete.
- 
+ As of today each taxi driver performs in a selfish manner.
+ This new technology makes the transition to central controlled fleets a
+ concrete option whereas once it was only a theoretical concept used in
+ determining the Price of Anarchy for different systems.
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset Newline newline
 \end_inset
 
 Looking into the agents involved in this setting we notice that the interests
- of the controller and the passengers can possibly be unalligned: the controller
- of the vehicles strives to maximize profit by reaching many rides while
- utilizing the vehicles efficiently and the passengers each want to wait
- as little as possible for their rides.
- These intersets can be unalligned for example if a passenger that is very
- far away from all of the vehicles and the other passengers requests a very
- short ride in her area.
+ of the controller of the vehicles and the passengers can possibly be unalligned
+: the controller strives to maximize profit by utilizing the vehicles efficientl
+y and the passengers each want to be serviced and arrive as quickly as possible
+ to their destination.
+ For example a passenger that is very far away from all of the vehicles
+ and the other passengers requests a very short ride in her area.
  By allocating a vehicle to this ride we essentially prevent the allocated
  taxi from servicing many other passengers.
  The price needed for making this ride profitable for the controller might
  be too high for that far away passenger.
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset Newline newline
 \end_inset
 
@@ -137,12 +150,22 @@ This Paper
 \begin_layout Standard
 In this paper we will approach the autonomous vehicle allocation (henceforth
  AVA) problem from the passengers perspective, that is: we wish to minimize
- expected waiting time for all passengers.
- We will focus on the problem of allocation and will not address pricing
+ expected arrival time for all passengers.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+We will focus on the problem of allocation and will not address pricing
  schemes.
- We start by presenting an ideal model of the problem, we will then discuss
- related work and approach the autonomous vehicle allocation problem from
- the perspective of some classical AGT problems.
+ We start by presenting an ideal model of the problem.
+ We will then discuss the k-server problem, a much researched online problem
+ with implications for our setting.
+ Finally we will utilize the research done on the k-server problem in order
+ to advance the AVA problem.
 \end_layout
 
 \begin_layout Section*
@@ -150,11 +173,20 @@ Our Model
 \end_layout
 
 \begin_layout Standard
-This is the model which we constructed to represent the problem at hand.
- We will strive to find an optimal solution for this model but as we will
- see in the future many relaxations to this model must be made in order
- to utilize previous results in the field.
- 
+This is the 
+\begin_inset Quotes eld
+\end_inset
+
+ideal
+\begin_inset Quotes erd
+\end_inset
+
+ model which we constructed to represent the problem at hand and will strive
+ to find an optimal solution for.
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset Newline newline
 \end_inset
 
@@ -162,7 +194,7 @@ We will represent the world by an infinite
 \begin_inset Formula $2D$
 \end_inset
 
- grid of points: 
+ grid of points which make up a metric space: 
 \begin_inset Formula 
 \[
 W:=\{<i,j>:\ i,j\in\mathbb{Z}\}
@@ -187,11 +219,7 @@ The distance function
 \end_inset
 
  is symmetric, nonnegative and satisfies the triangle inequality.
- 
-\begin_inset Newline newline
-\end_inset
-
-We will assume that the time needed to drive between points 
+ We assume that the time needed to drive between points 
 \begin_inset Formula $a$
 \end_inset
 
@@ -204,6 +232,10 @@ We will assume that the time needed to drive between points
 \end_inset
 
 .
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset Newline newline
 \end_inset
 
@@ -226,13 +258,17 @@ The set of vehicles will be represented by their locations in the world,
 \begin_inset Newline newline
 \end_inset
 
-The requests from the passengers arrive sequentially in an online fashion,
- at time 
+
+\begin_inset Newline newline
+\end_inset
+
+The requests from the passengers arrive sequentially in an online fashion.
+ At time 
 \begin_inset Formula $t$
 \end_inset
 
 : 
-\begin_inset Formula $r_{t}=<s_{t},e_{t}>\in W\times W$
+\begin_inset Formula $r_{t}=\langle s_{t},e_{t}\rangle\in W\times W$
 \end_inset
 
  is the request made by some passenger who whishes to be picked up at 
@@ -244,11 +280,16 @@ The requests from the passengers arrive sequentially in an online fashion,
 \end_inset
 
 .
+ 
 \begin_inset Newline newline
 \end_inset
 
-If a taxi 
-\begin_inset Formula $T$
+
+\begin_inset Newline newline
+\end_inset
+
+If some vehicle 
+\begin_inset Formula $v$
 \end_inset
 
  at location 
@@ -259,11 +300,8 @@ If a taxi
 \begin_inset Formula $r_{t}$
 \end_inset
 
- then the following holds:
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $T$
+ then 
+\begin_inset Formula $v$
 \end_inset
 
  will be busy with its current ride for 
@@ -271,25 +309,17 @@ If a taxi
 \end_inset
 
  and cannot be assigned to other rides in that time.
- (note that this is already an approximation as it could very well be the
- case that a more optimal assignemt can be made, which transfers the vehicle
- from 
-\begin_inset Formula $r_{t}$
+ 
+\begin_inset Newline newline
 \end_inset
 
- to 
-\begin_inset Formula $r_{t+1}$
+
+\begin_inset Newline newline
 \end_inset
 
- after having knowledge about 
-\begin_inset Formula $r_{t+1}$
-\end_inset
-
-)
-\end_layout
-
-\begin_layout Standard
-Finally, our goal will be to minimize the passengers waiting time.
+Recall our goal is to minimize the passengers arrival time.
+ As the distance they must travel is constant it is enough to minimize their
+ waiting time.
  Denote 
 \begin_inset Formula $c_{t}$
 \end_inset
@@ -313,22 +343,39 @@ Finally, our goal will be to minimize the passengers waiting time.
 
 \end_layout
 
-\begin_layout Section*
-Related Problems
+\begin_layout Subsubsection*
+Future ways to extend this model:
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Enumerate
+This model cannot assign another ride to a vehicle unless it finished the
+ ride it was previously allocated to.
+ It could be the case that a more optimal solution, involving reallocation
+ of a vehicle that was on its way to a passenger, might become available
+ upon receiving information of the next rides.
+ 
+\end_layout
+
+\begin_layout Enumerate
+In reality time needed to drive between points changes over time.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Implement carpools - a single vehicle servicing many passengers simultaneously.
+\end_layout
+
+\begin_layout Section*
 The k-server problem:
 \end_layout
 
 \begin_layout Standard
-One of the first problems we have found to be of relevance to the autonomous
- vehicle allocation problem is the k-server problem, regarded by some as
- 
+One of the first problems we have found to be of relevance to the AVA problem
+ is the k-server problem, regarded by some as 
 \begin_inset Quotes eld
 \end_inset
 
-the most influential online algorithm
+the most influential online problem
 \begin_inset Quotes erd
 \end_inset
 
@@ -337,20 +384,20 @@ the most influential online algorithm
 \begin_inset Newline newline
 \end_inset
 
-Formally: Let 
+
+\begin_inset Newline newline
+\end_inset
+
+Let 
 \begin_inset Formula $M$
 \end_inset
 
  be a metric space and let 
-\begin_inset Formula $d(x,y)$
+\begin_inset Formula $d(x_{1},x_{2})$
 \end_inset
 
  be the distance between points 
-\begin_inset Formula $x,y$
-\end_inset
-
- in 
-\begin_inset Formula $M$
+\begin_inset Formula $x_{1},x_{2}\in M$
 \end_inset
 
 .
@@ -359,27 +406,28 @@ Formally: Let
 \end_inset
 
  is non-negative, symmetric and satisfies the triangle inequality.
- Denote the 
-\begin_inset Quotes eld
+ 
+\begin_inset Newline newline
 \end_inset
 
-k-servers
-\begin_inset Quotes erd
+
+\begin_inset Newline newline
 \end_inset
 
- by some configuration of 
+Denote the k servers by some configuration of 
 \begin_inset Formula $k$
 \end_inset
 
- points of 
+ points in 
 \begin_inset Formula $M$
 \end_inset
 
-, that is servers are denoted by 
-\begin_inset Formula $C\in M^{k}$
+.
+ That is, servers are denoted by 
+\begin_inset Formula $C\in M^{(k)}$
 \end_inset
 
- .
+.
  The distance 
 \begin_inset Formula $d(C_{1},C_{2})$
 \end_inset
@@ -394,7 +442,7 @@ k-servers
 \end_inset
 
 .
- 
+ Note that 
 \begin_inset Formula $d(C_{1},C_{2})$
 \end_inset
 
@@ -411,21 +459,33 @@ k-servers
 \begin_inset Newline newline
 \end_inset
 
-The k-server problem is defined by an initial configuration 
-\begin_inset Formula $C_{0}\in M^{k}$
+
+\begin_inset Newline newline
 \end_inset
 
- and a sequence of requests 
-\begin_inset Formula $r=(r_{1},...,r_{m})$
-\end_inset
+The k-server problem is defined by: 
+\end_layout
 
- of points of 
-\begin_inset Formula $M$
+\begin_layout Enumerate
+Initial configuration 
+\begin_inset Formula $C_{0}\in M^{(k)}$
 \end_inset
 
 .
- A solution is a sequence of configurations 
-\begin_inset Formula $C_{1},...,C_{m}\in M^{k}$
+\end_layout
+
+\begin_layout Enumerate
+Sequence of requests 
+\begin_inset Formula $r=(r_{1},...,r_{n})\in M^{(n)}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+A solution is a sequence of configurations 
+\begin_inset Formula $C_{1},...,C_{n}\in M^{(k)}$
 \end_inset
 
  such that 
@@ -433,7 +493,7 @@ The k-server problem is defined by an initial configuration
 \end_inset
 
  for all 
-\begin_inset Formula $t=1,....,m$
+\begin_inset Formula $t=1,....,n$
 \end_inset
 
 .
@@ -442,17 +502,25 @@ The k-server problem is defined by an initial configuration
 \end_inset
 
  and service requests 
-\begin_inset Formula $r_{1},...,r_{m}$
+\begin_inset Formula $r_{1},...,r_{n}$
 \end_inset
 
  by moving through configurations 
-\begin_inset Formula $C_{1},...,C_{m}$
+\begin_inset Formula $C_{1},...,C_{n}$
 \end_inset
 
 .
- The cost of a solution is the total distance traveled by the servers which
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The cost of a solution is the total distance traveled by the servers which
  is 
-\begin_inset Formula $\Sigma_{t=1}^{m}d(C_{t-1},C_{t})$
+\begin_inset Formula $\Sigma_{t=1}^{n}d(C_{t-1},C_{t})$
 \end_inset
 
 .
@@ -464,32 +532,39 @@ The k-server problem is defined by an initial configuration
 \begin_inset Newline newline
 \end_inset
 
-We now cover the main results acheived in the decades of research on the
- k-server problem.
+We will now cover the main results acheived in the decades of research on
+ the k-server problem.
  We start with the two main conjectures which remain up to today as open
  problems.
 \end_layout
 
-\begin_layout Subsubsection*
-The k-server conjecture (Manasse, McGeogh, and Sleator 
-\begin_inset Formula $[1]$
-\end_inset
-
-): 
+\begin_layout Subsection*
+The [deterministic] k-server conjecture:
 \end_layout
 
 \begin_layout Standard
-For every metric space with more than k distinct points the competitive
- ratio of the k server problem is exactly k.
- 
+Manasse, McGeogh, and Sleator, 1988 
+\begin_inset Formula $[1]$
+\end_inset
+
+
 \begin_inset Newline newline
 \end_inset
 
+
+\end_layout
+
+\begin_layout Quote
+For every metric space with more than k distinct points the competitive
+ ratio of the k server problem is exactly k.
+\end_layout
+
+\begin_layout Standard
 If we define 
 \begin_inset Formula $\text{cost}_{A}(C_{0},r)$
 \end_inset
 
- to be the cost of running the algorithm 
+ to be the cost of running a deterministic online algorithm 
 \begin_inset Formula $A$
 \end_inset
 
@@ -520,7 +595,7 @@ e states that for any algorithm
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\text{cost}_{A}(C_{0},r)\leq k\text{opt}(C_{0},r)+\Phi(C_{0})
+\text{cost}_{A}(C_{0},r)\leq k\cdot\text{opt}(C_{0},r)+\Phi(C_{0})
 \]
 
 \end_inset
@@ -542,7 +617,7 @@ e states that for any algorithm
 \begin_layout Standard
 \begin_inset Formula 
 \[
-k=\inf_{A\in\text{[online algorithms]}}\sup_{r}\frac{\text{cost}_{A}(C_{0},r)}{\text{opt}(C_{0},r)}
+k=\inf_{A}\sup_{r}\frac{\text{cost}_{A}(C_{0},r)}{\text{opt}(C_{0},r)}
 \]
 
 \end_inset
@@ -554,20 +629,16 @@ k=\inf_{A\in\text{[online algorithms]}}\sup_{r}\frac{\text{cost}_{A}(C_{0},r)}{\
 The randomized k-server conjecture: 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Quote
 For every metric space there is a randomized online algorithm for the k-server
  problem with a competitive ratio 
 \begin_inset Formula $O(\log k)$
 \end_inset
 
+.
+\end_layout
 
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
+\begin_layout Standard
 Although these conjectures remain as open problems the following bounds
  were proven and we will attempt to use them in order to determine bounds
  for the AVA problem.
@@ -582,8 +653,8 @@ An upper bound on the competitive ratio of
 \begin_inset Formula $2k-1$
 \end_inset
 
- was proven for both the deterministic setting using the working function
- algorithm 
+ was proven for the deterministic setting using the working function algorithm
+ 
 \begin_inset Formula $[2]$
 \end_inset
 
@@ -615,6 +686,7 @@ Lower bounds for the k-server problem:
 \end_layout
 
 \begin_layout Standard
+A competitive ratio of 
 \begin_inset Formula $k$
 \end_inset
 
@@ -628,11 +700,12 @@ Lower bounds for the k-server problem:
 \end_inset
 
 .
- 
-\begin_inset Formula $\log k$
+ A ratio of 
+\begin_inset Formula $O(\log(k))$
 \end_inset
 
- has been proven to be a lower bound for the randomized case
+ has been proven to be a lower bound for the randomized case.
+ <<<<< FROM WHERE >>>>>>
 \begin_inset Newline newline
 \end_inset
 
@@ -640,11 +713,11 @@ Lower bounds for the k-server problem:
 \begin_inset Newline newline
 \end_inset
 
-We now draw the analogy between the k-server problem and our original AVA
- problem and point out the significant differences between the two.
-\begin_inset Newline newline
-\end_inset
+We will now draw the analogy between the k-server problem and the AVA problem
+ and point out the significant differences between the two.
+\end_layout
 
+\begin_layout Subsubsection*
 
 \series bold
 Similarities:
@@ -663,7 +736,7 @@ Requests arrive in sequential order in an online manner and so do passenger
  requests.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Subsubsection*
 
 \series bold
 Differences:
@@ -679,11 +752,9 @@ The k-server problem assumes the server who was assigned to
 \end_inset
 
 .
- This formulation treats the time the server needs to service a request
- as neglible relative to the time needed to move in order to service the
- request.
+ This setting treats the time the server needs to service a request as neglible.
  This assumption is not the case in AVA where a vehicle is made unavailable
- during a trip.
+ while servicing a request.
 \end_layout
 
 \begin_layout Enumerate
@@ -700,13 +771,21 @@ In AVA the vehicle moves from location
 \end_inset
 
 .
+ In the k-server problem a server which serviced 
+\begin_inset Formula $r_{t}$
+\end_inset
+
+ remains in location 
+\begin_inset Formula $r_{t}$
+\end_inset
+
+ after servicing the request.
  
 \end_layout
 
 \begin_layout Standard
-Thus we see that some significant differences from the k-server problem
- and AVA exist.
- 
+We will now attempt to bridge the gap between the two problems by introducing
+ a variation of the k-server problem with a set of new constraints.
 \end_layout
 
 \begin_layout Section*
@@ -718,17 +797,7 @@ The
 \end_layout
 
 \begin_layout Standard
-We first attempt to bridge the gap between the problems as a result of the
- first difference stated above, that of trips 
-\begin_inset Quotes eld
-\end_inset
-
-taking time
-\begin_inset Quotes erd
-\end_inset
-
-.
- We will define a variation of the k server problem in which each server
+We will define a variation of the k server problem in which each server
  becomes unavailable for 
 \begin_inset Formula $D$
 \end_inset
@@ -742,17 +811,19 @@ taking time
 \end_inset
 
 
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_layout Subsubsection*
 
 \series bold
-We define the [k,D]-server problem:
-\begin_inset Newline newline
+We define the 
+\begin_inset Formula $[k,D]$
 \end_inset
 
+-server problem:
+\end_layout
 
-\series default
+\begin_layout Standard
 As before let 
 \begin_inset Formula $M$
 \end_inset
@@ -774,41 +845,20 @@ As before let
 \begin_inset Formula $d$
 \end_inset
 
- is non-negative, symmetric and satisfies the triangle inequality for all
- points in 
-\begin_inset Formula $M$
-\end_inset
-
-.
+ is non-negative, symmetric and satisfies the triangle inequality.
  
 \begin_inset Newline newline
 \end_inset
 
-We need to define a new set of points corresponding to servers in differenct
- locations begin unavailable.
- As a server can service request 
-\begin_inset Formula $r$
-\end_inset
 
- if it is in location 
-\begin_inset Formula $r$
-\end_inset
-
- we can make sure a server cannot service any request by setting its location
- to some point not in 
-\begin_inset Formula $M$
-\end_inset
-
-.
- This will work as all requests will be from 
-\begin_inset Formula $M$
-\end_inset
-
-.
 \begin_inset Newline newline
 \end_inset
 
-We define a new space: 
+Define the space:
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset Formula 
 \[
 \bar{M}:=\{\bar{x}:x\in M\}
@@ -816,7 +866,69 @@ We define a new space:
 
 \end_inset
 
- We define the distance for any two points in 
+Intuitively 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\bar{x}$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ denotes the location 
+\begin_inset Formula $x$
+\end_inset
+
+ and a state of unavailability.
+\begin_inset Newline newline
+\end_inset
+
+All requests will be from 
+\begin_inset Formula $M$
+\end_inset
+
+, thus, a server cannot service any request by setting its location to some
+ point not in 
+\begin_inset Formula $M$
+\end_inset
+
+.
+ Any point in 
+\begin_inset Formula $\bar{M}$
+\end_inset
+
+ will do.
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+We define a new distance function 
+\begin_inset Formula $d^{*}$
+\end_inset
+
+ for any two points in 
 \begin_inset Formula $M^{*}=M\cup\bar{M}$
 \end_inset
 
@@ -824,17 +936,61 @@ We define a new space:
 \begin_inset Formula $M$
 \end_inset
 
-, using 
+ w.r.t 
 \begin_inset Formula $d$
 \end_inset
 
 .
  For example: 
-\begin_inset Formula $d(\bar{x},y)=d(x,y)$
+\begin_inset Formula $d^{*}(\bar{x},y)=d(x,y)$
 \end_inset
 
 .
- Denote the k servers by some
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+Claim: 
+\begin_inset Formula $d^{*}$
+\end_inset
+
+ is symmetric, non-negative and satisfies the triangle inequality.
+\end_layout
+
+\begin_layout Standard
+We will show a proof of the triangle inequality for two points in 
+\begin_inset Formula $M^{*}$
+\end_inset
+
+, other cases are similar:
+\begin_inset Formula 
+\[
+d^{*}(\bar{x},z)=d(x,z)\underset{\forall y\in M}{\leq}d(x,y)+d(y,z)=d^{*}(\bar{x},y)+d^{*}(y,z)=d^{*}(\bar{x},\bar{y})+d^{*}(\bar{y},z)
+\]
+
+\end_inset
+
+This means that: 
+\begin_inset Formula 
+\[
+\forall y\in M^{*}:d^{*}(\bar{x},z)\leq d^{*}(\bar{x},y)+d^{*}(y,z)
+\]
+
+\end_inset
+
+ Proving the claim 
+\begin_inset Formula $\square$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Denote the k servers by some
 \series bold
  
 \series default
@@ -848,7 +1004,7 @@ configuration of
 
 .
  That is, servers are denoted by 
-\begin_inset Formula $C\in M{}^{*k}$
+\begin_inset Formula $C\in M{}^{*(k)}$
 \end_inset
 
  .
@@ -856,7 +1012,7 @@ configuration of
 \end_inset
 
 The distance 
-\begin_inset Formula $d(C_{1},C_{2})$
+\begin_inset Formula $d^{*}(C_{1},C_{2})$
 \end_inset
 
  is the minimum distance needed to travel by servers in order to move from
@@ -870,7 +1026,7 @@ The distance
 
 .
  
-\begin_inset Formula $d(C_{1},C_{2})$
+\begin_inset Formula $d^{*}(C_{1},C_{2})$
 \end_inset
 
  is the value of the minimum-weight perfect matching between the points
@@ -890,20 +1046,24 @@ The distance
 \begin_inset Newline newline
 \end_inset
 
-The [k,d]-server problem is defined by: 
+The 
+\begin_inset Formula $[k,D]$
+\end_inset
+
+-server problem is defined by: 
 \end_layout
 
 \begin_layout Enumerate
 An initial configuration 
-\begin_inset Formula $C_{0}\in M{}^{k}$
+\begin_inset Formula $C_{0}\in M{}^{(k)}$
 \end_inset
 
- (note no server is initialized to be out of service) 
+ (note no server is initialized to be out of service).
 \end_layout
 
 \begin_layout Enumerate
 A sequence of requests 
-\begin_inset Formula $r=(r_{1},...,r_{m})$
+\begin_inset Formula $r=(r_{1},...,r_{n})$
 \end_inset
 
  of points in 
@@ -915,8 +1075,8 @@ A sequence of requests
 \end_layout
 
 \begin_layout Standard
-A solution is a sequence of configurations 
-\begin_inset Formula $C_{1},...,C_{m}\in M{}^{*k}$
+A valid solution is a sequence of configurations 
+\begin_inset Formula $C_{1},...,C_{n}\in M{}^{*(k)}$
 \end_inset
 
  such that 
@@ -924,7 +1084,7 @@ A solution is a sequence of configurations
 \end_inset
 
  for all 
-\begin_inset Formula $t=1,....,m$
+\begin_inset Formula $t=1,....,n$
 \end_inset
 
 ; And for any 
@@ -932,7 +1092,7 @@ A solution is a sequence of configurations
 \end_inset
 
  if 
-\begin_inset Formula $C_{t}[l]$
+\begin_inset Formula $(C_{t})_{l}$
 \end_inset
 
  was the server which served 
@@ -944,11 +1104,18 @@ A solution is a sequence of configurations
 \end_inset
 
  it holds that: 
-\begin_inset Formula $C_{t+i}[l]=\bar{r_{t}}$
+\begin_inset Formula $(C_{t+i})_{l}=\bar{r_{t}}$
 \end_inset
 
  .
- In the case that there is more than one server in 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+In the case that there is more than one server in 
 \begin_inset Formula $C_{t}$
 \end_inset
 
@@ -957,16 +1124,28 @@ A solution is a sequence of configurations
 \end_inset
 
  we arbitrarily choose one of them to serve the request.
- The k servers start at configuration 
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The 
+\begin_inset Formula $k$
+\end_inset
+
+ servers start at configuration 
 \begin_inset Formula $C_{0}$
 \end_inset
 
  and service requests 
-\begin_inset Formula $r_{1},...,r_{m}$
+\begin_inset Formula $r_{1},...,r_{n}$
 \end_inset
 
  by moving through configurations 
-\begin_inset Formula $C_{1},...,C_{m}$
+\begin_inset Formula $C_{1},...,C_{n}$
 \end_inset
 
  while conforming to the restrictions above.
@@ -974,9 +1153,13 @@ A solution is a sequence of configurations
 \begin_inset Newline newline
 \end_inset
 
+
+\begin_inset Newline newline
+\end_inset
+
 The cost of a solution is the total distance traveled by the servers which
  is 
-\begin_inset Formula $\Sigma_{t=1}^{m}d(C_{t-1},C_{t})$
+\begin_inset Formula $\Sigma_{t=1}^{n}d^{*}(C_{t-1},C_{t})$
 \end_inset
 
  .
@@ -1009,23 +1192,67 @@ In all cases we assume
 \begin_inset Newline newline
 \end_inset
 
-We know attempt to bound the competitive ratio of the [k,D]-server problem.
+We now attempt to bound the competitive ratio of the 
+\begin_inset Formula $[k,D]$
+\end_inset
+
+-server problem.
  We start by trying to show some relation between the optimal cost acheived
- by offline algorithms in both settings.
+ by offline algorithms in the 
+\begin_inset Formula $k$
+\end_inset
+
+-server and 
+\begin_inset Formula $[k,D]$
+\end_inset
+
+-server settings.
+\end_layout
+
+\begin_layout Subsection*
+Bounding the optimality of 
+\begin_inset Formula $[k,D]$
+\end_inset
+
+-server w.r.t 
+\begin_inset Formula $k$
+\end_inset
+
+-server
+\end_layout
+
+\begin_layout Standard
+Intuitively, disabling a server for a number of turns makes your model weaker.
+ Lets look at the case of 
+\begin_inset Formula $k=2$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsubsection*
-Lemma 1: 
+Lemma 1:
 \end_layout
 
 \begin_layout Quote
-For the case of k=2: 
+For the case of 
+\begin_inset Formula $k=2$
+\end_inset
+
+: 
 \end_layout
 
 \begin_layout Quote
-An optimal offline algorithm for the [k,1] problem has arbitrarily larger
- cost than an optimal offline algorithm for the k-server problem for some
- sequence of requests.
+An optimal offline algorithm for the 
+\begin_inset Formula $[k,1]$
+\end_inset
+
+ problem has arbitrarily larger cost than an optimal offline algorithm for
+ the 
+\begin_inset Formula $k$
+\end_inset
+
+-server problem for some sequence of requests.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -1060,6 +1287,10 @@ Let
 \begin_inset Newline newline
 \end_inset
 
+
+\begin_inset Newline newline
+\end_inset
+
 Let 
 \begin_inset Formula $A$
 \end_inset
@@ -1075,7 +1306,7 @@ Let
 \end_inset
 
  or else it will pay for the transitions of one server between the two points
- an arbitrary number of times.
+ a number of times proportional to the length of the series of requests.
  Thus the optimal cost acheived by an offline algorithm, for a sufficiently
  large sequence of requests, is some constant dependent on 
 \begin_inset Formula $C_{0},a,b$
@@ -1086,11 +1317,19 @@ Let
 \begin_inset Newline newline
 \end_inset
 
+
+\begin_inset Newline newline
+\end_inset
+
 Let 
 \begin_inset Formula $B$
 \end_inset
 
- be an optimal offline algorithm for the [k,D]-server problem.
+ be an optimal offline algorithm for the 
+\begin_inset Formula $[k,D]$
+\end_inset
+
+-server problem.
  The algorithm must service 
 \begin_inset Formula $a_{1}$
 \end_inset
@@ -1125,6 +1364,22 @@ Let
 \end_inset
 
 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Thus, we see that the intuitive notion of a 
+\begin_inset Quotes eld
+\end_inset
+
+weaker model
+\begin_inset Quotes erd
+\end_inset
+
+ is 
 \end_layout
 
 \begin_layout Subsubsection*
@@ -1140,9 +1395,16 @@ For all
 \end_layout
 
 \begin_layout Quote
-An optimal offline algorithm for the [k,1] problem has a cost D times that
- of an optimal offline algorithm for the 1-server problem for some sequence
- of requests.
+An optimal offline algorithm for the 
+\begin_inset Formula $[k,D]$
+\end_inset
+
+ problem has a cost arbitrarily larger cost than an optimal offline algorithm
+ for the 
+\begin_inset Formula $k$
+\end_inset
+
+-server problem for some sequence of requests.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -1440,6 +1702,18 @@ In the first transition we make a transition from the initial configuration
 \end_inset
 
 
+\end_layout
+
+\begin_layout Subsubsection*
+Lemma 4:
+\end_layout
+
+\begin_layout Quote
+For any 
+\begin_inset Formula $k'<k\cdot(D+1)$
+\end_inset
+
+ 
 \end_layout
 
 \begin_layout Part*
