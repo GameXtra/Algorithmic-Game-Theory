@@ -1404,7 +1404,7 @@ An optimal offline algorithm for the
 \begin_inset Formula $[k,D]$
 \end_inset
 
- problem has a cost arbitrarily larger cost than an optimal offline algorithm
+ problem has a cost arbitrarily larger than an optimal offline algorithm
  for the 
 \begin_inset Formula $k$
 \end_inset
@@ -1421,7 +1421,7 @@ Let
 \begin_inset Formula $B$
 \end_inset
 
- be group of 
+ be set of 
 \begin_inset Formula $k-D+1$
 \end_inset
 
@@ -1430,8 +1430,8 @@ Let
 \end_inset
 
 .
- Let
-\begin_inset Formula $C_{0}$
+ Let 
+\begin_inset Formula $C_{0}\in M^{(k)}$
 \end_inset
 
  be some initial configuration and let 
@@ -1455,7 +1455,7 @@ If all points in
 \begin_inset Formula $B$
 \end_inset
 
- apear at-least once in 
+ appear repeatedly in 
 \begin_inset Formula $R$
 \end_inset
 
@@ -1463,19 +1463,19 @@ If all points in
 \begin_inset Formula $|R|$
 \end_inset
 
- is big enough, it's clear that the optinal solution for the 
+ is big enough, it's clear that the optimal solution for the 
 \begin_inset Formula $k$
 \end_inset
 
 -server problem is to move the 
-\begin_inset Formula $k$
-\end_inset
-
- servers to the 
 \begin_inset Formula $k-D+1$
 \end_inset
 
- points and handle all other request without moving (notice 
+ of the servers to the 
+\begin_inset Formula $k-D+1$
+\end_inset
+
+ points and handle all further requests without cost (notice 
 \begin_inset Formula $D<k\rightarrow k-D+1\leq k$
 \end_inset
 
@@ -1497,7 +1497,7 @@ On the other hand, in the
 \begin_inset Formula $[k,D]$
 \end_inset
 
--server problem we cannot achive the same results.
+-server problem we cannot achieve a constant cost.
  Let 
 \begin_inset Formula $r_{i}$
 \end_inset
@@ -1519,16 +1519,12 @@ On the other hand, in the
 \begin_inset Formula $D$
 \end_inset
 
- servers previously means that we now have 
-\begin_inset Formula $D$
-\end_inset
-
- server unavailable for allocation, and 
+ servers previously, we now have 
 \begin_inset Formula $k-D$
 \end_inset
 
- server available.
- This means that at least one points in 
+ servers available for allocation.
+ This means that at least one point in 
 \begin_inset Formula $B$
 \end_inset
 
@@ -1536,28 +1532,27 @@ On the other hand, in the
 \begin_inset Formula $i$
 \end_inset
 
-(
+ as: 
 \begin_inset Formula $k-D<k-D+1$
 \end_inset
 
-).
- An adversary can then choose this point and send a request there, requiring
- one of the server to move.
- 
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-We can conclude that for 
+.
+ This of course is true for all 
 \begin_inset Formula $i>D$
 \end_inset
 
- one of the server will have to move from some other position, making the
- optimal cost of the sequence arbitrarly larger then the cost of handling
- the same sequesnce in the 
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+An adversary can repeatedly send requests to such points, requiring one
+ of the servers to move.
+ Thus, making the optimal cost of the sequence arbitrarly larger then the
+ cost of handling the same sequence in the 
 \begin_inset Formula $k$
 \end_inset
 
@@ -1567,6 +1562,23 @@ We can conclude that for
 \end_inset
 
 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+We can conclude that for the same number of servers, adding the constraint
+ of having a server unavailable makes the problem's optimal cost arbitrarily
+ larger.
+ We now move on to constructing an upper bound on the optimal cost of the
+ 
+\begin_inset Formula $[k,D]$
+\end_inset
+
+-server problem for a series of requests relative to the optimal value of
+ the original problem.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -1607,7 +1619,6 @@ For any online algorithm
 \end_inset
 
  for any sequence of requests.
- 
 \end_layout
 
 \begin_layout Subsubsection*
@@ -1616,7 +1627,7 @@ Proof of Lemma 3:
 
 \begin_layout Standard
 Define 
-\begin_inset Formula $C_{0}^{A}\in M^{k}$
+\begin_inset Formula $C_{0}^{A}\in M^{(k)}$
 \end_inset
 
  to be the initial configuration of 
@@ -1624,7 +1635,7 @@ Define
 \end_inset
 
 , similarly 
-\begin_inset Formula $C_{0}^{A_{D}}\in M^{k\cdot(D+1)}$
+\begin_inset Formula $C_{0}^{A_{D}}\in M^{(k\cdot(D+1))}$
 \end_inset
 
  for 
@@ -1662,18 +1673,31 @@ We define
 
 \begin_layout Enumerate
 We first define a series of 
-\begin_inset Quotes eld
+\begin_inset Formula $T$
 \end_inset
 
-helper configurations
-\begin_inset Quotes erd
+ intermediate configurations by mapping every coordinate in 
+\begin_inset Formula $C_{t}^{A}$
 \end_inset
 
-, for all 
+ to 
+\begin_inset Formula $D+1$
+\end_inset
+
+ coordinates in 
+\begin_inset Formula $C_{t}^{*A_{D}}$
+\end_inset
+
+ for all 
 \begin_inset Formula $t\in\{0,....,T\}$
 \end_inset
 
- and for all 
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Formally, for all 
 \begin_inset Formula $l\in\{0,....,k\cdot(D+1)-1\}$
 \end_inset
 
@@ -1685,7 +1709,28 @@ helper configurations
 
 \end_inset
 
+ Note that there is no coordinate assigned to a point in 
+\begin_inset Formula $\bar{M}$
+\end_inset
 
+, so this sequence must violate the constraint of having 
+\begin_inset Formula $D$
+\end_inset
+
+ appearances of 
+\begin_inset Formula $\bar{r_{t}}$
+\end_inset
+
+ after serving 
+\begin_inset Formula $r_{t}$
+\end_inset
+
+.
+ Thus, this sequence is not a valid solution to the 
+\begin_inset Formula $[k,D]$
+\end_inset
+
+-server problem.
 \end_layout
 
 \begin_layout Enumerate
@@ -1702,7 +1747,7 @@ We now define the (valid) set of configurations used by
 \begin_inset Formula 
 \[
 \forall l\in\{0,...,k\cdot(D+1)-1\}:\ (C_{t}^{A_{D}})_{l}:=\begin{cases}
-\bar{r_{t}} & (C^{A_{D}})_{l}\text{ serviced \ensuremath{r_{t}} before at most D turns}\\
+\bar{r} & (C^{A_{D}})_{l}\text{ serviced request \ensuremath{r} before at most D turns}\\
 (C_{t}^{*A_{D}})_{l} & \text{else}
 \end{cases}
 \]
@@ -1710,6 +1755,14 @@ We now define the (valid) set of configurations used by
 \end_inset
 
 
+\end_layout
+
+\begin_layout Subsubsection*
+The sequence 
+\begin_inset Formula $\{C_{t}^{A_{D}}\}_{t=1}^{T}$
+\end_inset
+
+ is a valid solution to the problem:
 \end_layout
 
 \begin_layout Standard
@@ -1767,7 +1820,7 @@ As
 .
  As only one server services a request in each turn, it must be the case
  that for some 
-\begin_inset Formula $a\in\{l(D+1),l(D+1)+1,.....l(D+1)+D\}$
+\begin_inset Formula $a\in\{l(D+1),l(D+1)+1,.....,l(D+1)+D\}$
 \end_inset
 
  the server 
@@ -1808,7 +1861,7 @@ As
 
 Claim: 
 \series default
-The cost acheived by algorithm 
+The cost achieved by algorithm 
 \begin_inset Formula $A_{D}$
 \end_inset
 
@@ -1884,8 +1937,12 @@ Denote some server by
 \end_inset
 
 .
- If we sum the total distances covered in some servicing sequence by this
- server we have that: 
+ If we sum the total distances covered in some servicing sequence starting
+ at some 
+\begin_inset Formula $r_{t}$
+\end_inset
+
+ by this server we have that: 
 \begin_inset Formula 
 \[
 \sum_{i=0}^{D}d^{*}\left((C_{t+i}^{A_{D}})_{l},(C_{t+i+1}^{A_{D}})_{l}\right)=d^{*}(r_{t},(C_{t+D+1}^{*A_{D}})_{l})
@@ -1894,7 +1951,7 @@ Denote some server by
 \end_inset
 
 Where we used the definition of the distance function and the fact that
- the last point in the sequence must be satisfy 
+ the last point in the sequence must satisfy 
 \begin_inset Formula $(C_{t+D+1}^{A_{D}})_{l}=(C_{t+D+1}^{*A_{D}})_{l}$
 \end_inset
 
@@ -1910,7 +1967,7 @@ Where we used the definition of the distance function and the fact that
 From the triangle inequality we have that: 
 \begin_inset Formula 
 \[
-d^{*}(r_{t},(C_{t+D+1}^{*A_{D}})_{l})\leq\sum_{i=1}^{D}d^{*}\left((C_{t+i}^{*A_{D}})_{l},(C_{t+i+1}^{*A_{D}})_{l}\right)
+d^{*}(r_{t},(C_{t+D+1}^{*A_{D}})_{l})\leq\sum_{i=0}^{D}d^{*}\left((C_{t+i}^{*A_{D}})_{l},(C_{t+i+1}^{*A_{D}})_{l}\right)
 \]
 
 \end_inset
@@ -1958,11 +2015,81 @@ We now bound the cost of
 \end_inset
 
 .
- The first transition depends on 
+ Note The first transition depends on 
 \begin_inset Formula $C_{0}^{A_{D}}$
 \end_inset
 
  and can be regarded as a constant.
+ Thus, the cost of 
+\begin_inset Formula $A_{D}$
+\end_inset
+
+ is 
+\begin_inset Formula $D+1$
+\end_inset
+
+ times that of 
+\begin_inset Formula $A$
+\end_inset
+
+ for the sequence of requests 
+\begin_inset Formula $r$
+\end_inset
+
+, up to a constant depending on 
+\begin_inset Formula $C_{0}$
+\end_inset
+
+.
+ 
+\begin_inset Formula $\square$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Note that this proof works for both online and offline algorithms 
+\begin_inset Formula $A$
+\end_inset
+
+.
+ So the following inequalities result:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\[
+OPT([k,D],{\bf r})\leq(D+1)\cdot OPT([\lfloor\frac{k}{D+1}\rfloor,0],{\bf r})
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\min_{A_{D}}(COST_{A_{D}})\leq(2k-1)(D+1)\cdot OPT([\lfloor\frac{k}{D+1}\rfloor,0],{\bf r})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{1}{D+1}\text{cost}_{A_{D}}\leq\text{cost}_{A}^{[\frac{k}{D+1}]}(C_{0},r)\leq(2k-1)\cdot\text{opt}_{k\text{-server}}(C_{0},r)
+\]
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection*
@@ -1974,7 +2101,7 @@ For any
 \begin_inset Formula $k'<k\cdot(D+1)$
 \end_inset
 
- 
+
 \end_layout
 
 \begin_layout Part*
