@@ -532,7 +532,7 @@ The cost of a solution is the total distance traveled by the servers which
 \begin_inset Newline newline
 \end_inset
 
-We will now cover the main results acheived in the decades of research on
+We will now cover the main results achieved in the decades of research on
  the k-server problem.
  We start with the two main conjectures which remain up to today as open
  problems.
@@ -1326,7 +1326,7 @@ Let
 \end_inset
 
  be an optimal offline algorithm for the 
-\begin_inset Formula $[k,D]$
+\begin_inset Formula $[k,1]$
 \end_inset
 
 -server problem.
@@ -1414,6 +1414,159 @@ An optimal offline algorithm for the
 
 \begin_layout Subsubsection*
 Proof of Lemma 2: 
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $B$
+\end_inset
+
+ be group of 
+\begin_inset Formula $k-D+1$
+\end_inset
+
+ distinct points in 
+\begin_inset Formula $M$
+\end_inset
+
+.
+ Let
+\begin_inset Formula $C_{0}$
+\end_inset
+
+ be some initial configuration and let 
+\begin_inset Formula $R\in B^{(n)}$
+\end_inset
+
+ a series of requests all taken from 
+\begin_inset Formula $B$
+\end_inset
+
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+If all points in 
+\begin_inset Formula $B$
+\end_inset
+
+ apear at-least once in 
+\begin_inset Formula $R$
+\end_inset
+
+, and 
+\begin_inset Formula $|R|$
+\end_inset
+
+ is big enough, it's clear that the optinal solution for the 
+\begin_inset Formula $k$
+\end_inset
+
+-server problem is to move the 
+\begin_inset Formula $k$
+\end_inset
+
+ servers to the 
+\begin_inset Formula $k-D+1$
+\end_inset
+
+ points and handle all other request without moving (notice 
+\begin_inset Formula $D<k\rightarrow k-D+1\leq k$
+\end_inset
+
+).
+ Thus the optimal cost acheived by an offline algorithm, for a sufficiently
+ large sequence of requests, is some constant dependent on 
+\begin_inset Formula $C_{0},B$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+On the other hand, in the 
+\begin_inset Formula $[k,D]$
+\end_inset
+
+-server problem we cannot achive the same results.
+ Let 
+\begin_inset Formula $r_{i}$
+\end_inset
+
+ be the 
+\begin_inset Formula $i^{th}$
+\end_inset
+
+ request in a series of requests 
+\begin_inset Formula $R$
+\end_inset
+
+, where 
+\begin_inset Formula $i>D$
+\end_inset
+
+.
+ Having already allocated more then 
+\begin_inset Formula $D$
+\end_inset
+
+ servers previously means that we now have 
+\begin_inset Formula $D$
+\end_inset
+
+ server unavailable for allocation, and 
+\begin_inset Formula $k-D$
+\end_inset
+
+ server available.
+ This means that at least one points in 
+\begin_inset Formula $B$
+\end_inset
+
+ doesn't contain any server at time 
+\begin_inset Formula $i$
+\end_inset
+
+(
+\begin_inset Formula $k-D<k-D+1$
+\end_inset
+
+).
+ An adversary can then choose this point and send a request there, requiring
+ one of the server to move.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+We can conclude that for 
+\begin_inset Formula $i>D$
+\end_inset
+
+ one of the server will have to move from some other position, making the
+ optimal cost of the sequence arbitrarly larger then the cost of handling
+ the same sequesnce in the 
+\begin_inset Formula $k$
+\end_inset
+
+-server setting.
+ 
+\begin_inset Formula $\square$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection*
