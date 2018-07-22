@@ -121,9 +121,9 @@ In this paper we will look into the autonomous taxi setting where we have
 \end_inset
 
 Looking into the agents involved in this setting we notice that the interests
- of the controller of the vehicles and the passengers can possibly be unalligned
-: the controller strives to maximize profit by utilizing the vehicles efficientl
-y and the passengers each want to be serviced and arrive as quickly as possible
+ of the controller of the vehicles and the passengers can possibly be unaligned:
+ the controller strives to maximize profit by utilizing the vehicles efficiently
+ and the passengers each want to be serviced and arrive as quickly as possible
  to their destination.
  For example a passenger that is very far away from all of the vehicles
  and the other passengers requests a very short ride in her area.
@@ -218,7 +218,7 @@ The distance function
 \begin_inset Formula $d$
 \end_inset
 
- is symmetric, nonnegative and satisfies the triangle inequality.
+ is symmetric, non-negative and satisfies the triangle inequality.
  We assume that the time needed to drive between points 
 \begin_inset Formula $a$
 \end_inset
@@ -271,7 +271,7 @@ The requests from the passengers arrive sequentially in an online fashion.
 \begin_inset Formula $r_{t}=\langle s_{t},e_{t}\rangle\in W\times W$
 \end_inset
 
- is the request made by some passenger who whishes to be picked up at 
+ is the request made by some passenger who wishes to be picked up at 
 \begin_inset Formula $s_{t}$
 \end_inset
 
@@ -543,7 +543,7 @@ The [deterministic] k-server conjecture:
 \end_layout
 
 \begin_layout Standard
-Manasse, McGeogh, and Sleator, 1988 
+Manasseh, McGeogh, and Sleator, 1988 
 \begin_inset Formula $[1]$
 \end_inset
 
@@ -580,8 +580,8 @@ If we define
 \begin_inset Formula $\text{opt}(C_{0},r)$
 \end_inset
 
- to be the optimal assignemt given by some offline algorithm, then the conjectur
-e states that for any algorithm 
+ to be the optimal assignment given by some offline algorithm, then the
+ conjecture states that for any algorithm 
 \begin_inset Formula $A$
 \end_inset
 
@@ -669,7 +669,7 @@ An upper bound on the competitive ratio of
 \end_inset
 
 .
- The polylogarithmic algorithm is a randomized algorithm which has competitive
+ The poly-logarithmic algorithm is a randomized algorithm which has competitive
  ratio of 
 \begin_inset Formula $O(\log^{2}k\log^{3}n\log\log n)$
 \end_inset
@@ -726,8 +726,8 @@ Similarities:
 \end_layout
 
 \begin_layout Enumerate
-The k-server problem minimizes distances travelled by servers to service
- requests and we wish minimize distances travelled by each vehicle to passenger.
+The k-server problem minimizes distances traveled by servers to service
+ requests and we wish minimize distances traveled by each vehicle to passenger.
  
 \end_layout
 
@@ -752,7 +752,8 @@ The k-server problem assumes the server who was assigned to
 \end_inset
 
 .
- This setting treats the time the server needs to service a request as neglible.
+ This setting treats the time the server needs to service a request as negligibl
+e.
  This assumption is not the case in AVA where a vehicle is made unavailable
  while servicing a request.
 \end_layout
@@ -1197,7 +1198,7 @@ We now attempt to bound the competitive ratio of the
 \end_inset
 
 -server problem.
- We start by trying to show some relation between the optimal cost acheived
+ We start by trying to show some relation between the optimal cost achieved
  by offline algorithms in the 
 \begin_inset Formula $k$
 \end_inset
@@ -1307,7 +1308,7 @@ Let
 
  or else it will pay for the transitions of one server between the two points
  a number of times proportional to the length of the series of requests.
- Thus the optimal cost acheived by an offline algorithm, for a sufficiently
+ Thus the optimal cost achieved by an offline algorithm, for a sufficiently
  large sequence of requests, is some constant dependent on 
 \begin_inset Formula $C_{0},a,b$
 \end_inset
@@ -1480,7 +1481,7 @@ If all points in
 \end_inset
 
 ).
- Thus the optimal cost acheived by an offline algorithm, for a sufficiently
+ Thus the optimal cost achieved by an offline algorithm, for a sufficiently
  large sequence of requests, is some constant dependent on 
 \begin_inset Formula $C_{0},B$
 \end_inset
@@ -1551,7 +1552,7 @@ On the other hand, in the
 
 An adversary can repeatedly send requests to such points, requiring one
  of the servers to move.
- Thus, making the optimal cost of the sequence arbitrarly larger then the
+ Thus, making the optimal cost of the sequence arbitrarily larger then the
  cost of handling the same sequence in the 
 \begin_inset Formula $k$
 \end_inset
@@ -1610,7 +1611,7 @@ For any online algorithm
 \begin_inset Formula $[k\cdot(D+1),D]$
 \end_inset
 
- server problem which acheives a cost of at most 
+ server problem which achieves a cost of at most 
 \begin_inset Formula $D+1$
 \end_inset
 
@@ -1869,7 +1870,7 @@ The cost achieved by algorithm
 \begin_inset Formula $D+1$
 \end_inset
 
- times that acheived by 
+ times that achieved by 
 \begin_inset Formula $A$
 \end_inset
 
@@ -2073,7 +2074,7 @@ OPT([k,D],{\bf r})\leq(D+1)\cdot OPT([\lfloor\frac{k}{D+1}\rfloor,0],{\bf r})
 
 \begin_inset Formula 
 \[
-\min_{A_{D}}(COST_{A_{D}})\leq(2k-1)(D+1)\cdot OPT([\lfloor\frac{k}{D+1}\rfloor,0],{\bf r})
+\min_{A_{D}}(COST_{A_{D}}(r))\leq(2k-1)(D+1)\cdot OPT([\lfloor\frac{k}{D+1}\rfloor,0],{\bf r})
 \]
 
 \end_inset
@@ -2082,6 +2083,8 @@ OPT([k,D],{\bf r})\leq(D+1)\cdot OPT([\lfloor\frac{k}{D+1}\rfloor,0],{\bf r})
 \end_layout
 
 \begin_layout Standard
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<the following should be deleted: >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 \begin_inset Formula 
 \[
 \frac{1}{D+1}\text{cost}_{A_{D}}\leq\text{cost}_{A}^{[\frac{k}{D+1}]}(C_{0},r)\leq(2k-1)\cdot\text{opt}_{k\text{-server}}(C_{0},r)
@@ -2101,7 +2104,350 @@ For any
 \begin_inset Formula $k'<k\cdot(D+1)$
 \end_inset
 
+ :
+\end_layout
 
+\begin_layout Quote
+There exist no online algorithm 
+\begin_inset Formula $A_{D}$
+\end_inset
+
+ for the 
+\begin_inset Formula $[k',D]$
+\end_inset
+
+ server problem that achieve a cost bounded by a constant factor of the
+ 
+\begin_inset Formula $k$
+\end_inset
+
+-server problem optimal cost.
+\end_layout
+
+\begin_layout Subsubsection*
+Proof of Lemma 4:
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $B$
+\end_inset
+
+ be set of 
+\begin_inset Formula $\text{k}$
+\end_inset
+
+ distinct points in 
+\begin_inset Formula $M$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $C_{0}\in M^{(k')}$
+\end_inset
+
+ be some initial configuration and let 
+\begin_inset Formula $R\in B^{(n)}$
+\end_inset
+
+ a series of requests all taken from 
+\begin_inset Formula $B$
+\end_inset
+
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+If all points in 
+\begin_inset Formula $B$
+\end_inset
+
+ appear repeatedly in 
+\begin_inset Formula $R$
+\end_inset
+
+, and 
+\begin_inset Formula $|R|$
+\end_inset
+
+ is big enough, it's clear that the optimal solution for the 
+\begin_inset Formula $k$
+\end_inset
+
+-server problem is to move the 
+\begin_inset Formula $k$
+\end_inset
+
+ the servers to the 
+\begin_inset Formula $k$
+\end_inset
+
+ points and handle all further requests without cost.
+ Thus the optimal cost achieved by an offline algorithm, for a sufficiently
+ large sequence of requests, is some constant dependent on 
+\begin_inset Formula $d(C_{0},B)$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+On the other hand, in the 
+\begin_inset Formula $[k',D]$
+\end_inset
+
+-server problem we cannot achieve a constant cost.
+ Let 
+\begin_inset Formula $C_{i}$
+\end_inset
+
+ be the state of the server after the
+\begin_inset Formula $i^{th}$
+\end_inset
+
+ request.
+ We have 
+\begin_inset Formula $k'<k\cdot(D+1)$
+\end_inset
+
+ servers and 
+\begin_inset Formula $k$
+\end_inset
+
+ distinct points.
+ From the pigeonhole principle we have that we have at least one point which
+ doesn't contain at least 
+\begin_inset Formula $D+1$
+\end_inset
+
+ servers (
+\begin_inset Formula $\frac{k'}{k}<\frac{k\cdot(D+1)}{k}=D+1$
+\end_inset
+
+).
+ Let's denote this point as 
+\begin_inset Formula $a$
+\end_inset
+
+, and let's denote the number of server at this point after the 
+\begin_inset Formula $i^{th}$
+\end_inset
+
+ request as 
+\begin_inset Formula $b$
+\end_inset
+
+.
+ If all the following 
+\begin_inset Formula $D+1$
+\end_inset
+
+ request will be sent to 
+\begin_inset Formula $a$
+\end_inset
+
+, 
+\begin_inset Formula $\forall j\in[i+1,i+D+1+1]\text{ }s.t\text{ }R_{j}=a$
+\end_inset
+
+, the algorithm can use up to 
+\begin_inset Formula $b$
+\end_inset
+
+ server without moving a server from a different location.
+ As 
+\begin_inset Formula $b<D+1$
+\end_inset
+
+, after at most 
+\begin_inset Formula $b$
+\end_inset
+
+ turns all the 
+\begin_inset Formula $b$
+\end_inset
+
+ servers will be unavailable, and the algorithm will have to move another
+ server to handle another request at point 
+\begin_inset Formula $a$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+An adversary can repeatedly send requests to such points, requiring one
+ of the servers to move.
+ Thus, making the cost of the sequence depend not only on 
+\begin_inset Formula $C_{0},B$
+\end_inset
+
+, but also on 
+\begin_inset Formula $R$
+\end_inset
+
+.
+ We can then make the cost arbitrarily larger then the cost of handling
+ the same sequence in the 
+\begin_inset Formula $k$
+\end_inset
+
+-server setting.
+ 
+\begin_inset Formula $\square$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+We can conclude that the solution for the 
+\begin_inset Formula $[k,D]$
+\end_inset
+
+-server cannot be bounded by any
+\begin_inset Formula $k'$
+\end_inset
+
+-server problem handling the same series of request with less then 
+\begin_inset Formula $k\cdot(D+1)$
+\end_inset
+
+ servers.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Competitive Algorithm
+\end_layout
+
+\begin_layout Standard
+<<<<<< We would try to find a competitive algorithm for the problem and
+ prove that it also work on this case.
+\end_layout
+
+\begin_layout Section*
+Conclusion and Further Research
+\end_layout
+
+\begin_layout Standard
+The AVA problem arise many sub-problems we wish to deal with.
+ One of those problems is the handling of 
+\begin_inset Quotes eld
+\end_inset
+
+unavailable
+\begin_inset Quotes erd
+\end_inset
+
+ periods of the cars while handling there tasks.
+ We have introduced the 
+\begin_inset Formula $[k,D]$
+\end_inset
+
+-server problem as a simplified version of the AVA problem in order to tackle
+ this aspect of the problem.
+ The 
+\begin_inset Formula $k$
+\end_inset
+
+-server problem, 
+\begin_inset Quotes eld
+\end_inset
+
+the most influential online problem
+\begin_inset Quotes erd
+\end_inset
+
+, is a major knowledge base in the online algorithms field.
+ in order to be able to apply the finding on the
+\begin_inset Formula $AVA$
+\end_inset
+
+ problem we first have to establish the connection between the two.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Our results show that the 
+\begin_inset Formula $k$
+\end_inset
+
+-server problem and the 
+\begin_inset Formula $[k,D]$
+\end_inset
+
+-server problem closely resemble each other, and we have shown how to bound
+ the solution for the 
+\begin_inset Formula $[k,D]$
+\end_inset
+
+-server problem using the 
+\begin_inset Formula $k$
+\end_inset
+
+-server problem, and also proved that we cannot hope to achieve better bounds
+ using the same reduction.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Further research should focus on two aspect of the AVA problem.
+ First in order to handle the availability issue we recommend researching
+ competitive algorithms for the 
+\begin_inset Formula $[k,D]$
+\end_inset
+
+-server problem, or bounding the competitive ratio.
+ Second some open issue remain with handling the transportation of the vehicles
+ after handling the rides.
+ This aspect of the AVA problem remains open, and make it different from
+ the 
+\begin_inset Formula $k$
+\end_inset
+
+-server problem.
+ We recommend defining new simplified problem which leave the availability
+ factor on the side and trying to further out insights that arise from the
+ new constrains.
+ Hopefully laying the foundation for a robust competitive algorithm for
+ the AVA problem.
+\begin_inset Newline newline
+\end_inset
+
+<<<<<<<<<<<<<if we find anything regarded competitive algorithm add something
+ about it.>>>>>>>>>>.
 \end_layout
 
 \begin_layout Part*
@@ -2115,7 +2461,7 @@ key "key-1"
 
 \end_inset
 
-Mark Manasse, Lyle A.
+Mark Manasseh, Lyle A.
  McGeoch, and Daniel Sleator.
  Competitive algorithms for online problems.
  In Proc.
@@ -2170,7 +2516,7 @@ key "key-5"
 
 \end_inset
 
-Mark S Manasse, Lyle A McGeoch, and Daniel D Sleator.
+Mark S Manasseh, Lyle A McGeoch, and Daniel D Sleator.
  Competitive algorithms for server problems.
  Journal of Algorithms, 11(2):208–230, 1990.
 \end_layout
