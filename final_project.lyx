@@ -1573,8 +1573,16 @@ An adversary can repeatedly send requests to such points, requiring one
 We can conclude that for the same number of servers, adding the constraint
  of having a server unavailable makes the problem's optimal cost arbitrarily
  larger.
- We now move on to constructing an upper bound on the optimal cost of the
  
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+We now move on to constructing an upper and lower bound on the optimal cost
+ of the 
 \begin_inset Formula $[k,D]$
 \end_inset
 
@@ -1620,6 +1628,117 @@ For any online algorithm
 \end_inset
 
  for any sequence of requests.
+\end_layout
+
+\begin_layout Subsubsection*
+Lemma 4:
+\end_layout
+
+\begin_layout Quote
+For any 
+\begin_inset Formula $k'<k\cdot(D+1)$
+\end_inset
+
+ :
+\end_layout
+
+\begin_layout Quote
+There exists no online algorithm 
+\begin_inset Formula $A_{D}$
+\end_inset
+
+ for the 
+\begin_inset Formula $[k',D]$
+\end_inset
+
+ server problem that achieves a cost that can be bound by a constant factor
+ of the 
+\begin_inset Formula $k$
+\end_inset
+
+-server problem optimal cost for all series of requests.
+\end_layout
+
+\begin_layout Standard
+These two lemmas together reveal an interesting property of the 
+\begin_inset Formula $[k,D]$
+\end_inset
+
+-server problem.
+ Note that as a result of disabling a server for 
+\begin_inset Formula $D$
+\end_inset
+
+ turns after it services a request, we will have at least 
+\begin_inset Formula $k-D$
+\end_inset
+
+ active servers available at any point in time.
+ It could seem that the 
+\begin_inset Formula $[k,D]$
+\end_inset
+
+-server problem should demand an addition of 
+\begin_inset Formula $O(D)$
+\end_inset
+
+ additional servers in order to compensate for the 
+\begin_inset Formula $D$
+\end_inset
+
+ unavailabile servers.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The two lemmas show that this is not the case.
+ Although the number of available servers is not 
+\begin_inset Formula $\frac{k}{D}$
+\end_inset
+
+ or some other fraction of 
+\begin_inset Formula $k$
+\end_inset
+
+, we need 
+\begin_inset Formula $k\cdot(D+1)$
+\end_inset
+
+ servers in order to 
+\begin_inset Quotes eld
+\end_inset
+
+truly compensate
+\begin_inset Quotes erd
+\end_inset
+
+ for the 
+\begin_inset Formula $D$
+\end_inset
+
+ delay.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+More importantly, we have shown a method to bound our new problem w.r.t the
+ much researched 
+\begin_inset Formula $k$
+\end_inset
+
+-server problem, and we show this in a constructive manner: lemma 
+\begin_inset Formula $3$
+\end_inset
+
+ shows a method for constructing an algorithm with this cost.
+ 
 \end_layout
 
 \begin_layout Subsubsection*
@@ -2096,39 +2215,28 @@ OPT([k,D],{\bf r})\leq(D+1)\cdot OPT([\lfloor\frac{k}{D+1}\rfloor,0],{\bf r})
 \end_layout
 
 \begin_layout Subsubsection*
-Lemma 4:
-\end_layout
-
-\begin_layout Quote
-For any 
-\begin_inset Formula $k'<k\cdot(D+1)$
-\end_inset
-
- :
-\end_layout
-
-\begin_layout Quote
-There exist no online algorithm 
-\begin_inset Formula $A_{D}$
-\end_inset
-
- for the 
-\begin_inset Formula $[k',D]$
-\end_inset
-
- server problem that achieve a cost bounded by a constant factor of the
- 
-\begin_inset Formula $k$
-\end_inset
-
--server problem optimal cost.
-\end_layout
-
-\begin_layout Subsubsection*
 Proof of Lemma 4:
 \end_layout
 
 \begin_layout Standard
+We will prove the claim by showing a method for constructing a series of
+ requests for which a constant cost can be acheived in the 
+\begin_inset Formula $k$
+\end_inset
+
+-server problem but an arbitrarily large cost can be acheived for the 
+\begin_inset Formula $[k',D]$
+\end_inset
+
+-server problem.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
 Let 
 \begin_inset Formula $B$
 \end_inset
@@ -2210,7 +2318,7 @@ On the other hand, in the
 \begin_inset Formula $C_{i}$
 \end_inset
 
- be the state of the server after the
+ be the state of the server after the 
 \begin_inset Formula $i^{th}$
 \end_inset
 
@@ -2224,8 +2332,7 @@ On the other hand, in the
 \end_inset
 
  distinct points.
- From the pigeonhole principle we have that we have at least one point which
- doesn't contain at least 
+ Thus we must have at least one point which doesn't contain at least 
 \begin_inset Formula $D+1$
 \end_inset
 
@@ -2238,7 +2345,7 @@ On the other hand, in the
 \begin_inset Formula $a$
 \end_inset
 
-, and let's denote the number of server at this point after the 
+, and let's denote the number of servers at this point after the 
 \begin_inset Formula $i^{th}$
 \end_inset
 
@@ -2263,7 +2370,7 @@ On the other hand, in the
 \begin_inset Formula $b$
 \end_inset
 
- server without moving a server from a different location.
+ servers without moving a server from a different location.
  As 
 \begin_inset Formula $b<D+1$
 \end_inset
@@ -2276,7 +2383,7 @@ On the other hand, in the
 \begin_inset Formula $b$
 \end_inset
 
- servers will be unavailable, and the algorithm will have to move another
+ servers will be unavailable and the algorithm will have to move another
  server to handle another request at point 
 \begin_inset Formula $a$
 \end_inset
@@ -2300,38 +2407,14 @@ An adversary can repeatedly send requests to such points, requiring one
 \end_inset
 
 .
- We can then make the cost arbitrarily larger then the cost of handling
+ Note we can make the cost arbitrarily larger then the cost of handling
  the same sequence in the 
 \begin_inset Formula $k$
 \end_inset
 
--server setting.
+-server setting, thus finishing the proof.
  
 \begin_inset Formula $\square$
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-We can conclude that the solution for the 
-\begin_inset Formula $[k,D]$
-\end_inset
-
--server cannot be bounded by any
-\begin_inset Formula $k'$
-\end_inset
-
--server problem handling the same series of request with less then 
-\begin_inset Formula $k\cdot(D+1)$
-\end_inset
-
- servers.
-\begin_inset Newline newline
 \end_inset
 
 
@@ -2355,7 +2438,7 @@ Conclusion and Further Research
 \end_layout
 
 \begin_layout Standard
-The AVA problem arise many sub-problems we wish to deal with.
+The AVA problem has raised many sub-problems we wish to deal with.
  One of those problems is the handling of 
 \begin_inset Quotes eld
 \end_inset
@@ -2364,7 +2447,7 @@ unavailable
 \begin_inset Quotes erd
 \end_inset
 
- periods of the cars while handling there tasks.
+ periods of the cars while they are handling their tasks.
  We have introduced the 
 \begin_inset Formula $[k,D]$
 \end_inset
@@ -2384,7 +2467,7 @@ the most influential online problem
 \end_inset
 
 , is a major knowledge base in the online algorithms field.
- in order to be able to apply the finding on the
+ in order to be able to apply the finding on the 
 \begin_inset Formula $AVA$
 \end_inset
 
@@ -2423,26 +2506,28 @@ Our results show that the
 \begin_inset Newline newline
 \end_inset
 
-Further research should focus on two aspect of the AVA problem.
- First in order to handle the availability issue we recommend researching
- competitive algorithms for the 
+Further research should focus on two aspects of the AVA problem.
+ First we recommend researching competitive algorithms for the 
 \begin_inset Formula $[k,D]$
 \end_inset
 
--server problem, or bounding the competitive ratio.
- Second some open issue remain with handling the transportation of the vehicles
- after handling the rides.
- This aspect of the AVA problem remains open, and make it different from
+-server problem in order bound the problem's competitive ratio.
+ The second major difference is that of vehicles changing location during
+ a ride.
+ This aspect of the AVA problem remains open, and makes it different from
  the 
 \begin_inset Formula $k$
 \end_inset
 
 -server problem.
- We recommend defining new simplified problem which leave the availability
- factor on the side and trying to further out insights that arise from the
- new constrains.
- Hopefully laying the foundation for a robust competitive algorithm for
- the AVA problem.
+ We recommend defining and studying another simplified problem which addresses
+ this exactly, as we have done with the 
+\begin_inset Formula $[k,D]$
+\end_inset
+
+-server problem.
+ Hopefully, this will lay the foundation for a robust competitive algorithm
+ for the AVA problem.
 \begin_inset Newline newline
 \end_inset
 
