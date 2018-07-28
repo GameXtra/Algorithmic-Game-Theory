@@ -1,5 +1,5 @@
-#LyX 2.2 created this file. For more info see http://www.lyx.org/
-\lyxformat 508
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
 \begin_document
 \begin_header
 \save_transient_properties true
@@ -21,6 +21,8 @@
 \font_osf false
 \font_sf_scale 100 100
 \font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures false
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -49,6 +51,7 @@
 \suppress_date false
 \justification true
 \use_refstyle 1
+\use_minted 0
 \index Index
 \shortcut idx
 \color #008000
@@ -57,7 +60,10 @@
 \tocdepth 3
 \paragraph_separation indent
 \paragraph_indentation default
-\quotes_language english
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
@@ -83,7 +89,17 @@ CTRL F '<<<' Introduction
 \end_layout
 
 \begin_layout Standard
-<<<< START WITH MAJOR WOW!>>>>
+<<<< START WITH MAJOR WO
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+W!>>>>
 \end_layout
 
 \begin_layout Standard
@@ -343,28 +359,6 @@ Recall our goal is to minimize the passengers arrival time.
 
 \end_layout
 
-\begin_layout Subsubsection*
-Future ways to extend this model:
-\end_layout
-
-\begin_layout Enumerate
-This model cannot assign another ride to a vehicle unless it finished the
- ride it was previously allocated to.
- It could be the case that a more optimal solution, involving reallocation
- of a vehicle that was on its way to a passenger, might become available
- upon receiving information of the next rides.
- 
-\end_layout
-
-\begin_layout Enumerate
-In reality time needed to drive between points changes over time.
- 
-\end_layout
-
-\begin_layout Enumerate
-Implement carpools - a single vehicle servicing many passengers simultaneously.
-\end_layout
-
 \begin_layout Section*
 The k-server problem:
 \end_layout
@@ -379,7 +373,7 @@ the most influential online problem
 \begin_inset Quotes erd
 \end_inset
 
-.
+ [3].
  
 \begin_inset Newline newline
 \end_inset
@@ -1180,7 +1174,7 @@ In all cases we assume
 \begin_inset Formula $D<k$
 \end_inset
 
- or else for any sequence of more than 
+ or else there exists some sequence of more than 
 \begin_inset Formula $k$
 \end_inset
 
@@ -1520,7 +1514,7 @@ On the other hand, in the
 \begin_inset Formula $D$
 \end_inset
 
- servers previously, we now have 
+ servers previously, we now have less than 
 \begin_inset Formula $k-D$
 \end_inset
 
@@ -1746,6 +1740,52 @@ Proof of Lemma 3:
 \end_layout
 
 \begin_layout Standard
+We'll describe an Algotihm 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $A_{D}$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ that solves the 
+\begin_inset Formula $[k,D]$
+\end_inset
+
+-server problem using an algorithm 
+\begin_inset Formula $A$
+\end_inset
+
+ that solves the 
+\begin_inset Formula $k$
+\end_inset
+
+-server problem.
+\end_layout
+
+\begin_layout Standard
 Define 
 \begin_inset Formula $C_{0}^{A}\in M^{(k)}$
 \end_inset
@@ -1817,6 +1857,12 @@ We first define a series of
 \begin_inset Newline newline
 \end_inset
 
+Meaning, that for every server in original configuration at time t, there
+ are D+1 servers in that same location in time t in the new configuration.
+ 
+\begin_inset Newline newline
+\end_inset
+
 Formally, for all 
 \begin_inset Formula $l\in\{0,....,k\cdot(D+1)-1\}$
 \end_inset
@@ -1880,6 +1926,10 @@ We now define the (valid) set of configurations used by
 \begin_layout Subsubsection*
 The sequence 
 \begin_inset Formula $\{C_{t}^{A_{D}}\}_{t=1}^{T}$
+\end_inset
+
+ that is done by 
+\begin_inset Formula $A_{D}$
 \end_inset
 
  is a valid solution to the problem:
@@ -2000,7 +2050,7 @@ The cost achieved by algorithm
 We start by showing:
 \begin_inset Formula 
 \begin{equation}
-\sum_{i=1}^{T}d^{*}(C_{i-1}^{A_{D}},C_{i}^{A_{D}})\leq\sum_{i=1}^{T}d^{*}(C_{i-1}^{*A_{D}},C_{i}^{*A_{D}})
+\sum_{i=1}^{T}d(C_{i-1}^{A_{D}},C_{i}^{A_{D}})\leq\sum_{i=1}^{T}d^{*}(C_{i-1}^{*A_{D}},C_{i}^{*A_{D}})
 \end{equation}
 
 \end_inset
@@ -2194,19 +2244,6 @@ OPT([k,D],{\bf r})\leq(D+1)\cdot OPT([\lfloor\frac{k}{D+1}\rfloor,0],{\bf r})
 \begin_inset Formula 
 \[
 \min_{A_{D}}(COST_{A_{D}}(r))\leq(2k-1)(D+1)\cdot OPT([\lfloor\frac{k}{D+1}\rfloor,0],{\bf r})
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-<the following should be deleted: >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-\begin_inset Formula 
-\[
-\frac{1}{D+1}\text{cost}_{A_{D}}\leq\text{cost}_{A}^{[\frac{k}{D+1}]}(C_{0},r)\leq(2k-1)\cdot\text{opt}_{k\text{-server}}(C_{0},r)
 \]
 
 \end_inset
@@ -2437,6 +2474,28 @@ Competitive Algorithm
 Conclusion and Further Research
 \end_layout
 
+\begin_layout Subsubsection*
+Future ways to extend this model:
+\end_layout
+
+\begin_layout Enumerate
+This model cannot assign another ride to a vehicle unless it finished the
+ ride it was previously allocated to.
+ It could be the case that a more optimal solution, involving reallocation
+ of a vehicle that was on its way to a passenger, might become available
+ upon receiving information of the next rides.
+ 
+\end_layout
+
+\begin_layout Enumerate
+In reality time needed to drive between points changes over time.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Implement carpools - a single vehicle servicing many passengers simultaneously.
+\end_layout
+
 \begin_layout Standard
 The AVA problem has raised many sub-problems we wish to deal with.
  One of those problems is the handling of 
@@ -2528,11 +2587,6 @@ Further research should focus on two aspects of the AVA problem.
 -server problem.
  Hopefully, this will lay the foundation for a robust competitive algorithm
  for the AVA problem.
-\begin_inset Newline newline
-\end_inset
-
-<<<<<<<<<<<<<if we find anything regarded competitive algorithm add something
- about it.>>>>>>>>>>.
 \end_layout
 
 \begin_layout Part*
@@ -2543,6 +2597,7 @@ Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
 key "key-1"
+literal "true"
 
 \end_inset
 
@@ -2559,6 +2614,7 @@ Mark Manasseh, Lyle A.
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
 key "key-2"
+literal "true"
 
 \end_inset
 
@@ -2574,6 +2630,21 @@ Elias Koutsoupias and Christos Papadimitriou.
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
 key "key-3"
+literal "false"
+
+\end_inset
+
+Koutsoupias, E.
+ (2009).
+ The k-server problem.
+ Computer Science Review, 3(2), 105-118.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-4"
+literal "true"
 
 \end_inset
 
@@ -2585,7 +2656,8 @@ Yair Bartal and Eddie Grove.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-4"
+key "key-5"
+literal "true"
 
 \end_inset
 
@@ -2597,7 +2669,8 @@ Nikhil Bansal, Niv Buchbinder, Aleksander Madry, et al.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-5"
+key "key-6"
+literal "true"
 
 \end_inset
 
@@ -2609,7 +2682,8 @@ Mark S Manasseh, Lyle A McGeoch, and Daniel D Sleator.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-6"
+key "key-7"
+literal "true"
 
 \end_inset
 
