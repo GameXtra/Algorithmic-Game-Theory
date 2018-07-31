@@ -80,26 +80,25 @@
 Autonomous Vehicle Trip Allocation
 \end_layout
 
-\begin_layout Author
-Itay Itzhak, Ido Kessler & Jonathan Somer
-\end_layout
-
-\begin_layout Section*
-CTRL F '<<<' Introduction
+\begin_layout Standard
+Jonathan Somer, Ido Kessler & Itay Itzhak
 \end_layout
 
 \begin_layout Standard
-<<<< START WITH MAJOR WO
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
+Algorithmic Game Theory
 \end_layout
 
-\end_inset
+\begin_layout Standard
+Lecturer: Prof.
+ Michal Feldman
+\end_layout
 
-W!>>>>
+\begin_layout Standard
+<<<Need to put it in a box>>>
+\end_layout
+
+\begin_layout Section*
+1 Introduction
 \end_layout
 
 \begin_layout Standard
@@ -185,7 +184,7 @@ We will focus on the problem of allocation and will not address pricing
 \end_layout
 
 \begin_layout Section*
-Our Model
+2 Our Model
 \end_layout
 
 \begin_layout Standard
@@ -360,7 +359,7 @@ Recall our goal is to minimize the passengers arrival time.
 \end_layout
 
 \begin_layout Section*
-The k-server problem:
+3 The k-server problem:
 \end_layout
 
 \begin_layout Standard
@@ -373,7 +372,11 @@ the most influential online problem
 \begin_inset Quotes erd
 \end_inset
 
- [3].
+ 
+\begin_inset Formula $[2]$
+\end_inset
+
+.
  
 \begin_inset Newline newline
 \end_inset
@@ -538,7 +541,7 @@ The [deterministic] k-server conjecture:
 
 \begin_layout Standard
 Manasseh, McGeogh, and Sleator, 1988 
-\begin_inset Formula $[1]$
+\begin_inset Formula $[4]$
 \end_inset
 
 
@@ -616,24 +619,7 @@ k=\inf_{A}\sup_{r}\frac{\text{cost}_{A}(C_{0},r)}{\text{opt}(C_{0},r)}
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Subsubsection*
-The randomized k-server conjecture: 
-\end_layout
-
-\begin_layout Quote
-For every metric space there is a randomized online algorithm for the k-server
- problem with a competitive ratio 
-\begin_inset Formula $O(\log k)$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-Although these conjectures remain as open problems the following bounds
+Although this conjecture remain as an open problem the following bounds
  were proven and we will attempt to use them in order to determine bounds
  for the AVA problem.
 \end_layout
@@ -649,7 +635,7 @@ An upper bound on the competitive ratio of
 
  was proven for the deterministic setting using the working function algorithm
  
-\begin_inset Formula $[2]$
+\begin_inset Formula $[1]$
 \end_inset
 
 .
@@ -659,7 +645,7 @@ An upper bound on the competitive ratio of
 \end_inset
 
  for all metric spaces 
-\begin_inset Formula $[3]$
+\begin_inset Formula $[7]$
 \end_inset
 
 .
@@ -669,7 +655,7 @@ An upper bound on the competitive ratio of
 \end_inset
 
  for all metric spaces 
-\begin_inset Formula $[4]$
+\begin_inset Formula $[6]$
 \end_inset
 
 .
@@ -699,14 +685,26 @@ A competitive ratio of
 \end_inset
 
  has been proven to be a lower bound for the randomized case.
- <<<<< FROM WHERE >>>>>>
-\begin_inset Newline newline
+ 
+\begin_inset Formula $[3]$
 \end_inset
 
 
 \begin_inset Newline newline
 \end_inset
 
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+The k-server problem and AVA prblem
+\end_layout
+
+\begin_layout Standard
 We will now draw the analogy between the k-server problem and the AVA problem
  and point out the significant differences between the two.
 \end_layout
@@ -784,7 +782,7 @@ We will now attempt to bridge the gap between the two problems by introducing
 \end_layout
 
 \begin_layout Section*
-The 
+4 The 
 \begin_inset Formula $[k,D]$
 \end_inset
 
@@ -1430,7 +1428,7 @@ Let
 \end_inset
 
  be some initial configuration and let 
-\begin_inset Formula $R\in B^{(n)}$
+\begin_inset Formula $r\in B^{(n)}$
 \end_inset
 
  a series of requests all taken from 
@@ -1451,11 +1449,11 @@ If all points in
 \end_inset
 
  appear repeatedly in 
-\begin_inset Formula $R$
+\begin_inset Formula $r$
 \end_inset
 
 , and 
-\begin_inset Formula $|R|$
+\begin_inset Formula $|r|$
 \end_inset
 
  is big enough, it's clear that the optimal solution for the 
@@ -1502,7 +1500,7 @@ On the other hand, in the
 \end_inset
 
  request in a series of requests 
-\begin_inset Formula $R$
+\begin_inset Formula $r$
 \end_inset
 
 , where 
@@ -1771,7 +1769,7 @@ We'll describe an Algotihm
 \noun default
 \color inherit
  that solves the 
-\begin_inset Formula $[k,D]$
+\begin_inset Formula $[k\cdot(D+1),D]$
 \end_inset
 
 -server problem using an algorithm 
@@ -1808,7 +1806,7 @@ Define
 \end_inset
 
  is some sequence of 
-\begin_inset Formula $T$
+\begin_inset Formula $T=|r|$
 \end_inset
 
  requests which the algorithm 
@@ -1832,7 +1830,10 @@ We define
 \end_layout
 
 \begin_layout Enumerate
-We first define a series of 
+We first define that for every server in original configuration at time
+ t, there are D+1 servers in that same location in same time t in the new
+ configuration.
+ Meaning, we define a series of 
 \begin_inset Formula $T$
 \end_inset
 
@@ -1857,13 +1858,11 @@ We first define a series of
 \begin_inset Newline newline
 \end_inset
 
-Meaning, that for every server in original configuration at time t, there
- are D+1 servers in that same location in time t in the new configuration.
- 
+
 \begin_inset Newline newline
 \end_inset
 
-Formally, for all 
+Formally, for every server 
 \begin_inset Formula $l\in\{0,....,k\cdot(D+1)-1\}$
 \end_inset
 
@@ -1900,7 +1899,7 @@ Formally, for all
 \end_layout
 
 \begin_layout Enumerate
-We now define the (valid) set of configurations used by 
+We now define the valid set of configurations used by 
 \begin_inset Formula $A_{D}$
 \end_inset
 
@@ -2461,17 +2460,8 @@ An adversary can repeatedly send requests to such points, requiring one
 
 \end_layout
 
-\begin_layout Subsection*
-Competitive Algorithm
-\end_layout
-
-\begin_layout Standard
-<<<<<< We would try to find a competitive algorithm for the problem and
- prove that it also work on this case.
-\end_layout
-
 \begin_layout Section*
-Conclusion and Further Research
+5 Conclusion and Further Research
 \end_layout
 
 \begin_layout Subsubsection*
@@ -2523,6 +2513,10 @@ unavailable
 
 the most influential online problem
 \begin_inset Quotes erd
+\end_inset
+
+
+\begin_inset Formula $[2]$
 \end_inset
 
 , is a major knowledge base in the online algorithms field.
@@ -2589,14 +2583,48 @@ Further research should focus on two aspects of the AVA problem.
  for the AVA problem.
 \end_layout
 
-\begin_layout Part*
-Bibliography
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-1"
+literal "false"
+
+\end_inset
+
+Koutsoupias, Elias, and Christos H.
+ Papadimitriou.
+ "On the k-server conjecture." Journal of the ACM (JACM) 42.5 (1995): 971-983.
 \end_layout
 
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-1"
+key "key-2"
+literal "false"
+
+\end_inset
+
+Koutsoupias, Elias.
+ "The k-server problem." Computer Science Review 3.2 (2009): 105-118.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-3"
+literal "false"
+
+\end_inset
+
+Karloff, Howard, Yuval Rabani, and Yiftach Ravid.
+ "Lower bounds for randomized k-server and motion-planning algorithms." SIAM
+ Journal on Computing 23.2 (1994): 293-312.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-4"
 literal "true"
 
 \end_inset
@@ -2613,63 +2641,7 @@ Mark Manasseh, Lyle A.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-2"
-literal "true"
-
-\end_inset
-
-Elias Koutsoupias and Christos Papadimitriou.
- On the k-server conjecture.
- In Proc.
- 26th Symp.
- Theory of Computing (STOC), pages 507–511.
- ACM, 1994.
-\end_layout
-
-\begin_layout Bibliography
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "key-3"
-literal "false"
-
-\end_inset
-
-Koutsoupias, E.
- (2009).
- The k-server problem.
- Computer Science Review, 3(2), 105-118.
-\end_layout
-
-\begin_layout Bibliography
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "key-4"
-literal "true"
-
-\end_inset
-
-Yair Bartal and Eddie Grove.
- The harmonic k-server algorithm is competitive.
- Journal of the ACM (JACM), 47(1):1–15, 2000.
-\end_layout
-
-\begin_layout Bibliography
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
 key "key-5"
-literal "true"
-
-\end_inset
-
-Nikhil Bansal, Niv Buchbinder, Aleksander Madry, et al.
- A polylogarithmic-competitive algorithm for the k-server problem.
- arXiv preprint arXiv:1110.1580, 2011.
-\end_layout
-
-\begin_layout Bibliography
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "key-6"
 literal "true"
 
 \end_inset
@@ -2682,15 +2654,27 @@ Mark S Manasseh, Lyle A McGeoch, and Daniel D Sleator.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
+key "key-6"
+literal "false"
+
+\end_inset
+
+Nikhil Bansal, Niv Buchbinder, Aleksander Madry, et al.
+ A polylogarithmic-competitive algorithm for the k-server problem.
+ arXiv preprint arXiv:1110.1580, 2011.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
 key "key-7"
 literal "true"
 
 \end_inset
 
-Amos Fiat, Richard M Karp, Michael Luby, Lyle A McGeoch, Daniel D Sleator,
- and Neal E Young.
- Competitive paging algorithms.
- Journal of Algorithms, 12(4):685–699, 1991.
+Yair Bartal and Eddie Grove.
+ The harmonic k-server algorithm is competitive.
+ Journal of the ACM (JACM), 47(1):1–15, 2000.
 \end_layout
 
 \end_body
